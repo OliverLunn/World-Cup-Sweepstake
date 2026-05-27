@@ -1,33 +1,66 @@
-// Global Helper: Creates dynamic img tags for country codes mapped inside data.js
+// =========================================================================
+// 1. GLOBAL VARIABLES & ACCESSIBILITY PLACEHOLDERS
+// =========================================================================
+// These prevent the application from crashing if the fetch routine fails
+let fixturesData = [];
+let groupsData = {};
+
+// =========================================================================
+// 2. HELPER FUNCTIONS
+// =========================================================================
+
+/**
+ * Generates an HTML image tag for a country flag using FlagCDN.
+ * Mapped to the ISO codes specified inside data.js
+ */
 function getFlagHtml(teamName) {
     const code = teamCodes[teamName];
-    if (!code) return ''; // Returns blank if team name is "TBD" or missing
+    if (!code) return ''; // Returns blank if team name is "TBD" or unmapped
     return `<img src="https://flagcdn.com/24x18/${code}.png" class="flag-icon" alt="${teamName} flag">`;
 }
 
-// Standard View Controller Switching
+// =========================================================================
+// 3. NAVIGATION & VIEW CONTROLLER LOGIC
+// =========================================================================
+
+/**
+ * Switches between standard view tabs (Sweepstake, Fixtures, Groups)
+ */
 function openTab(tabId) {
+    // Hide all view panels
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active-content'));
+    
+    // Remove active styling from all navbar buttons
     document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
     
+    // Display targeted panel view
     document.getElementById(tabId).classList.add('active-content');
     
+    // Find matching navbar tab button and highlight it
     const targetButton = Array.from(document.querySelectorAll('.tab-btn'))
         .find(btn => btn.getAttribute('onclick').includes(`'${tabId}'`));
-    if (targetButton) targetButton.classList.add('active');
+    if (targetButton) {
+        targetButton.classList.add('active');
+    }
 }
 
-// Deep-link country profile rendering engine
+/**
+ * Deep-link custom profile rendering engine for selected countries
+ */
 function showTeamDetail(teamName) {
-    if (teamName === "TBD") return; // Ignore clicks on placeholder bracket elements
+    if (teamName === "TBD" || !teamName) return; // Ignore clicks on placeholder elements
 
+    // Hide standard content tabs completely
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active-content'));
     document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
     
+    // Reveal hidden team section
     document.getElementById('team-detail').classList.add('active-content');
+    
+    // Populate header title with flag and country name
     document.getElementById('team-title').innerHTML = `${getFlagHtml(teamName)} ${teamName}`;
     
-    // 1. Gather & Parse localized Team Matches
+    // 1. Gather & Parse fixtures filtered explicitly for this team
     const teamFixtures = fixturesData.filter(f => f.match.includes(teamName));
     const fixturesDiv = document.getElementById('team-fixtures-list');
     
@@ -47,10 +80,10 @@ function showTeamDetail(teamName) {
             `;
         }).join('');
     } else {
-        fixturesDiv.innerHTML = "<p>No custom matches discovered for this team layout records.</p>";
+        fixturesDiv.innerHTML = "<p>No matches discovered for this team layout records.</p>";
     }
     
-    // 2. Map Array data rosters onto page structure
+    // 2. Fetch and render manual squad array records from data.js
     const squadUl = document.getElementById('team-squad-list');
     const assignedSquad = squadsData[teamName];
     
@@ -61,15 +94,25 @@ function showTeamDetail(teamName) {
     }
 }
 
+/**
+ * Direct exit link from detail view back to main dashboard
+ */
 function closeTeamDetail() {
     openTab('sweepstake');
 }
 
-// NEW: Generates the HTML layout for the tree structure on the home page
+// =========================================================================
+// 4. RENDERING ENGINES (HTML GENERATORS)
+// =========================================================================
+
+/**
+ * Generates the dynamic visual tree structure on the home page
+ */
 function renderBracket() {
     const bracketContainer = document.getElementById('bracket-container');
+    if (!bracketContainer) return;
     
-    // Helper function to turn a matchup object into HTML
+    // Helper function to turn a matchup data block into structural layout HTML
     const createMatchupHtml = (m) => `
         <div class="bracket-matchup">
             <div class="bracket-team-row">
@@ -101,53 +144,96 @@ function renderBracket() {
     `;
 }
 
-// Core App Global Data Aggregator Framework
+/**
+ * Global application content rendering engine orchestration loop
+ */
 function renderApp() {
-    // 1. Render Sweepstake list with flags
+    // 1. Generate Sweepstake Standings Dashboard
     const sweepstakeDiv = document.getElementById('sweepstake-list');
-    sweepstakeDiv.innerHTML = sweepstakeData.map(p => `
-        <p>
-            <strong>${p.player}</strong>: 
-            <span class="team-link" onclick="showTeamDetail('${p.team}')">${getFlagHtml(p.team)} ${p.team}</span> 
-            &nbsp;—&nbsp; <em>(${p.status})</em>
-        </p>
-    `).join('');
+    if (sweepstakeDiv) {
+        sweepstakeDiv.innerHTML = sweepstakeData.map(p => `
+            <p>
+                <strong>${p.player}</strong>: 
+                <span class="team-link" onclick="showTeamDetail('${p.team}')">${getFlagHtml(p.team)} ${p.team}</span> 
+                &nbsp;—&nbsp; <em>(${p.status})</em>
+            </p>
+        `).join('');
+    }
 
-    // 2. Render Fixtures Schedule with flags
+    // 2. Generate Universal Fixtures Master Schedule Tab
     const fixturesDiv = document.getElementById('fixtures-list');
-    fixturesDiv.innerHTML = fixturesData.map(f => {
-        const teams = f.match.split(" vs ");
-        return `
-            <div class="fixture-card">
-                <div class="fixture-date">${f.date}</div>
-                <div class="fixture-teams">
-                    <span class="team-link" onclick="showTeamDetail('${teams[0]}')">${getFlagHtml(teams[0])} ${teams[0]}</span> 
-                    <span>vs</span> 
-                    <span class="team-link" onclick="showTeamDetail('${teams[1]}')">${getFlagHtml(teams[1])} ${teams[1]}</span>
-                </div>
-                <div class="fixture-score">${f.score}</div>
-            </div>
-        `;
-    }).join('');
-
-    // 3. Render Group Stage Containers with flags
-    const groupsDiv = document.getElementById('groups-list');
-    groupsDiv.innerHTML = Object.keys(groupsData).map(groupKey => `
-        <div class="group-table">
-            <h3>${groupKey}</h3>
-            <div>
-                ${groupsData[groupKey].map(t => `
-                    <div class="group-row">
-                        <span class="team-link" onclick="showTeamDetail('${t.team}')">${getFlagHtml(t.team)} ${t.team}</span>
-                        <span><strong>Pts: ${t.pts}</strong> (GD: ${t.gd})</span>
+    if (fixturesDiv) {
+        fixturesDiv.innerHTML = fixturesData.map(f => {
+            const teams = f.match.split(" vs ");
+            return `
+                <div class="fixture-card">
+                    <div class="fixture-date">${f.date}</div>
+                    <div class="fixture-teams">
+                        <span class="team-link" onclick="showTeamDetail('${teams[0]}')">${getFlagHtml(teams[0])} ${teams[0]}</span> 
+                        <span>vs</span> 
+                        <span class="team-link" onclick="showTeamDetail('${teams[1]}')">${getFlagHtml(teams[1])} ${teams[1]}</span>
                     </div>
-                `).join('')}
-            </div>
-        </div>
-    `).join('');
+                    <div class="fixture-score">${f.score}</div>
+                </div>
+            `;
+        }).join('');
+    }
 
-    // 4. Render the Knockout Tree
+    // 3. Generate Traditional Group Tables Tab
+    const groupsDiv = document.getElementById('groups-list');
+    if (groupsDiv) {
+        groupsDiv.innerHTML = Object.keys(groupsData).map(groupKey => `
+            <div class="group-table">
+                <h3>${groupKey}</h3>
+                <div>
+                    ${groupsData[groupKey].map(t => `
+                        <div class="group-row">
+                            <span class="team-link" onclick="showTeamDetail('${t.team}')">${getFlagHtml(t.team)} ${t.team}</span>
+                            <span><strong>Pts: ${t.pts}</strong> (GD: ${t.gd})</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // 4. Generate the Knockout Bracket Tree Visuals
     renderBracket();
 }
 
-window.onload = renderApp;
+// =========================================================================
+// 5. ASYNC CORE INITIALIZER SYSTEM
+// =========================================================================
+
+/**
+ * Fires when browser parses scripts completely. Fetches remote data payloads
+ * securely before executing DOM building logic loops.
+ */
+async function initApp() {
+    try {
+        // Attempt to fetch the automated data file generated by your GitHub Action robot
+        const response = await fetch('./live-data.json');
+        
+        if (!response.ok) {
+            throw new Error(`HTTP network response failed with status: ${response.status}`);
+        }
+        
+        const liveData = await response.json();
+
+        // Assign global references over our top-level placeholders
+        fixturesData = liveData.fixturesData || [];
+        groupsData = liveData.groupsData || {};
+
+        console.log(`Data live synchronized. Source timestamp: ${liveData.lastUpdated}`);
+    } catch (err) {
+        console.error("⚠️ Failed loading automated tournament feeds:", err);
+        console.warn("TIP: Ensure you test using a local development server extension (like Live Server) and not via file:/// browser pathways.");
+    } finally {
+        // The finally block ALWAYS executes, guaranteeing that the user interface 
+        // will build and render your navigation tabs, even if data file loading crashes.
+        renderApp();
+    }
+}
+
+// Bind initialization tasks to browser resources loaded state triggers
+window.onload = initApp;
