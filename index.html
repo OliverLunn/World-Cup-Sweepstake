@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>World Cup 2026 Sweepstake</title>
+    <title>FIFA World Cup 2026 Sweepstake</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,28 +11,58 @@
     <header>
         <h1>🏆 World Cup 2026 Sweepstake</h1>
         <div class="tabs">
-            <button class="tab-btn active" onclick="openTab('sweepstake')">Sweepstake</button>
-            <button class="tab-btn" onclick="openTab('fixtures')">Fixtures</button>
-            <button class="tab-btn" onclick="openTab('groups')">Groups</button>
+            <button class="tab-btn active" onclick="openTab('sweepstake')">Sweepstake & Bracket</button>
+            <button class="tab-btn" onclick="openTab('fixtures')">Fixtures & Results</button>
+            <button class="tab-btn" onclick="openTab('groups')">Group Standings</button>
         </div>
     </header>
 
     <main>
         <section id="sweepstake" class="tab-content active-content">
             <h2>Participants & Assigned Teams</h2>
+            <p class="instruction-text">Click on a country to view its squad and specific fixture schedule.</p>
             <div id="sweepstake-list"></div>
+
+            <div class="bracket-section">
+                <h2>🌳 Tournament Knockout Tree</h2>
+                <p class="instruction-text">Scroll horizontally if viewing on a smaller screen to see the path to the Final.</p>
+                <div id="bracket-container" class="bracket-container"></div>
+            </div>
         </section>
 
         <section id="fixtures" class="tab-content">
-            <h2>Fixture List & Results</h2>
+            <h2>Tournament Fixtures</h2>
+            <p class="instruction-text">Click on any country to see their individual path.</p>
             <div id="fixtures-list"></div>
         </section>
 
         <section id="groups" class="tab-content">
-            <h2>Group Standings</h2>
-            <div id="groups-list"></div>
+            <h2>Group Stage Tables</h2>
+            <div id="groups-list" class="groups-container"></div>
+        </section>
+
+        <section id="team-detail" class="tab-content">
+            <button onclick="closeTeamDetail()" class="back-btn">← Back to Dashboard</button>
+            
+            <h2 id="team-title">Country Name</h2>
+            
+            <div class="team-grid">
+                <div class="team-fixtures-box">
+                    <h3>📅 Team Fixtures</h3>
+                    <div id="team-fixtures-list"></div>
+                </div>
+                
+                <div class="team-squad-box">
+                    <h3>📋 Squad List</h3>
+                    <ul id="team-squad-list"></ul>
+                </div>
+            </div>
         </section>
     </main>
+
+    <footer>
+        <p>World Cup 2026 Sweepstake Tracker</p>
+    </footer>
 
     <script src="data.js"></script>
     <script src="app.js"></script>

@@ -1,40 +1,334 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+/* Global Reset and Styles */
+* {
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
     padding: 20px;
 }
+
 header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    background: #004b87;
+    color: white;
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
+
+header h1 {
+    margin-bottom: 15px;
+    font-size: 2.2rem;
+}
+
+/* Tabs Navigation */
 .tabs {
-    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
+
 .tab-btn {
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: bold;
     cursor: pointer;
     border: none;
-    background: #ddd;
-    margin: 0 5px;
-    border-radius: 5px;
-}
-.tab-btn.active {
-    background: #007bff;
+    background: rgba(255, 255, 255, 0.2);
     color: white;
+    border-radius: 20px;
+    transition: all 0.3s ease;
 }
+
+.tab-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.tab-btn.active {
+    background: #ffffff;
+    color: #004b87;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Main Content Containers */
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    min-height: 600px;
+}
+
 .tab-content {
     display: none;
     background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
+
 .tab-content.active-content {
     display: block;
 }
-.fixture-card {
+
+h2 {
+    margin-bottom: 10px;
+    color: #004b87;
+    border-bottom: 2px solid #f0f2f5;
+    padding-bottom: 10px;
+}
+
+.instruction-text {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+/* Flag Icon Styling */
+.flag-icon {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: auto;
+    margin-right: 8px;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+/* Clickable Team Links */
+.team-link {
+    color: #0066cc;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 600;
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: background 0.2s;
+    display: inline-flex;
+    align-items: center;
+}
+
+.team-link:hover {
+    color: #003366;
+    background-color: #e6f2ff;
+    text-decoration: underline;
+}
+
+/* Sweepstake List Rows */
+#sweepstake-list p {
+    padding: 12px;
     border-bottom: 1px solid #eee;
-    padding: 10px 0;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+#sweepstake-list p:last-child {
+    border-bottom: none;
+}
+
+/* Fixture Layouts */
+.fixture-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    background: #fafafa;
+    margin-bottom: 8px;
+    border-radius: 6px;
+}
+
+.fixture-date {
+    font-size: 14px;
+    color: #777;
+    width: 80px;
+}
+
+.fixture-teams {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.fixture-score {
+    font-weight: bold;
+    background: #e9ecef;
+    padding: 4px 12px;
+    border-radius: 4px;
+    min-width: 60px;
+    text-align: center;
+}
+
+/* Groups Layout */
+.groups-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.group-table {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    background: #fdfdfd;
+}
+
+.group-table h3 {
+    margin-bottom: 10px;
+    color: #333;
+    text-align: center;
+    background: #e6f2ff;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.group-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+.group-row:last-child {
+    border-bottom: none;
+}
+
+/* NEW: Tournament Tree Bracket Layout */
+.bracket-section {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 3px double #e0e0e0;
+}
+
+.bracket-container {
+    display: flex;
+    gap: 40px;
+    overflow-x: auto;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.bracket-round {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-width: 220px;
+}
+
+.bracket-round h4 {
+    text-align: center;
+    color: #004b87;
+    margin-bottom: 15px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 5px;
+}
+
+.bracket-matchup {
+    background: white;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    margin: 15px 0;
+}
+
+.bracket-team-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    font-size: 14px;
+}
+
+.bracket-team-row:first-child {
+    border-bottom: 1px solid #f1f3f5;
+}
+
+.bracket-score-box {
+    font-weight: bold;
+    color: #495057;
+    background: #e9ecef;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+/* Team Detail Page View */
+.back-btn {
+    padding: 10px 20px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.back-btn:hover {
+    background-color: #495057;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.team-fixtures-box, .team-squad-box {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.team-squad-box ul {
+    list-style-type: none;
+    margin-top: 10px;
+}
+
+.team-squad-box li {
+    padding: 8px 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #888;
+    font-size: 14px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    .fixture-card {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    .fixture-date { width: auto; }
 }
