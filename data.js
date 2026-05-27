@@ -30,11 +30,19 @@ const teamCodes = {
 // Update this list with your actual friends, their assigned countries,
 // and change status to "Eliminated" when they go home!
 const sweepstakeData = [
-    { player: "Alice", team: "Mexico", status: "In Tournament" },
-    { player: "Bob", team: "South Africa", status: "In Tournament" },
-    { player: "Charlie", team: "England", status: "In Tournament" },
-    { player: "Dave", team: "USA", status: "In Tournament" },
-    { player: "Emma", team: "Argentina", status: "In Tournament" }
+    { player: "Tom Antolin", team: "TBD", status: "In Tournament" },
+    { player: "Anna Dalmasso", team: "TBD", status: "In Tournament" },
+    { player: "Jake Dorman", team: "TBD", status: "In Tournament" },
+    { player: "Jacob Campbell", team: "TBD", status: "In Tournament" },
+    { player: "Breagh Macpherson", team: "TBD", status: "In Tournament" },
+    { player: "Dan Ford", team: "TBD", status: "In Tournament" },
+    { player: "Dan Ferring", team: "TBD", status: "In Tournament" },
+    { player: "Rayff De Souza", team: "TBD", status: "In Tournament" },
+    { player: "Greg Humphrey-Evans", team: "TBD", status: "In Tournament" },
+    { player: "Oliver Lunn", team: "TBD", status: "In Tournament" },
+    { player: "Tyler Rolfe", team: "TBD", status: "In Tournament" },
+    { player: "Adela Fernandez", team: "TBD", status: "In Tournament" },
+    { player: "Guillaume Hewitt", team: "TBD", status: "In Tournament" }
 ];
 
 // ==========================================
