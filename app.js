@@ -224,6 +224,21 @@ async function initApp() {
         fixturesData = liveData.fixturesData || [];
         groupsData = liveData.groupsData || {};
 
+        // Generate the bracket tree from the knockout stage matches
+        const knockoutMatches = fixturesData.filter(m => 
+            m.match.includes('Quarter') || 
+            m.match.includes('Semi') || 
+            m.match.includes('Final')
+        );
+        
+        if (knockoutMatches.length > 0) {
+            generateBracketFromMatches(knockoutMatches);
+        } else {
+            // If no knockout matches found, try to extract from the full fixtures
+            // by looking for matches that typically occur after group stage
+            generateBracketFromMatches(fixturesData.slice(-8)); // Last 8 matches are typically knockouts
+        }
+
         console.log(`Data live synchronized. Source timestamp: ${liveData.lastUpdated}`);
     } catch (err) {
         console.error("⚠️ Failed loading automated tournament feeds:", err);
