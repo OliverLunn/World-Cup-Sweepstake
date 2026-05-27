@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+}
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.tabs {
+    margin-top: 15px;
+}
+.tab-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background: #ddd;
+    margin: 0 5px;
+    border-radius: 5px;
+}
+.tab-btn.active {
+    background: #007bff;
+    color: white;
+}
+.tab-content {
+    display: none;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.tab-content.active-content {
+    display: block;
+}
+.fixture-card {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}

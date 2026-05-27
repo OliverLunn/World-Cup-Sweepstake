@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Cup 2026 Sweepstake</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>🏆 World Cup 2026 Sweepstake</h1>
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab('sweepstake')">Sweepstake</button>
+            <button class="tab-btn" onclick="openTab('fixtures')">Fixtures</button>
+            <button class="tab-btn" onclick="openTab('groups')">Groups</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="sweepstake" class="tab-content active-content">
+            <h2>Participants & Assigned Teams</h2>
+            <div id="sweepstake-list"></div>
+        </section>
+
+        <section id="fixtures" class="tab-content">
+            <h2>Fixture List & Results</h2>
+            <div id="fixtures-list"></div>
+        </section>
+
+        <section id="groups" class="tab-content">
+            <h2>Group Standings</h2>
+            <div id="groups-list"></div>
+        </section>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
