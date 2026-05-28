@@ -153,7 +153,7 @@ function renderApp() {
     if (sweepstakeDiv) {
         sweepstakeDiv.innerHTML = sweepstakeData.map(p => `
             <p>
-                <strong>${p.player}</strong>: 
+                <strong>${p.player === "Guillaume Hewitt" ? `<a href="https://www.youtube.com/watch?v=Y6XEan0s0n8" target="_blank" style="color: inherit; text-decoration: underline;">${p.player}</a>` : p.player}</strong>: 
                 <span class="team-link" onclick="showTeamDetail('${p.team}')">${getFlagHtml(p.team)} ${p.team}</span> 
                 &nbsp;—&nbsp; <em>(${p.status})</em>
             </p>
