@@ -132,9 +132,22 @@ h2 {
 
 #sweepstake-list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 20px;
+    /* Responsive columns: 1 column on mobile, 2 on tablets, 4 on desktops */
+    grid-template-columns: 1fr; 
+    gap: 15px;
     margin-bottom: 30px;
+}
+
+@media (min-width: 600px) {
+    #sweepstake-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    #sweepstake-list {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 .sweepstake-card {
