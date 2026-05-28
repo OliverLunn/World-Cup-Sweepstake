@@ -1,0 +1,35 @@
+name: Auto Update World Cup Scores
+
+on:
+  schedule:
+    # Runs every 12 hours every day during the tournament
+    - cron: '0 */12 * * *'
+  workflow_dispatch: # Allows you to manually click a button to force update anytime
+
+permissions:
+  contents: write
+
+jobs:
+  update-scores:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Execute Live Scraper Script
+        env:
+          FOOTBALL_API_KEY: ${{ secrets.FOOTBALL_API_KEY }}
+        run: node update_data.js
+
+      - name: Commit and Push changes back to GitHub Pages
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add live-data.json
+          git commit -m "🤖 System Auto-Update: Fresh World Cup Scores Linked" || echo "No changes to commit"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git

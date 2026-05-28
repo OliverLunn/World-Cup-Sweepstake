@@ -11,7 +11,7 @@
     <header>
         <h1>World Cup 2026 Sweepstake</h1>
         <div class="tabs">
-            <button class="tab-btn active" onclick="openTab('sweepstake')">Sweepstake & Bracket</button>
+            <button class="tab-btn active" onclick="openTab('sweepstake')">The Draw</button>
             <button class="tab-btn" onclick="openTab('fixtures')">Fixtures & Results</button>
             <button class="tab-btn" onclick="openTab('groups')">Group Standings</button>
         </div>
@@ -28,6 +28,8 @@
                 <p class="instruction-text">Scroll horizontally if viewing on a smaller screen to see the path to the Final.</p>
                 <div id="bracket-container" class="bracket-container"></div>
             </div>
+
+            <div id="scorers-leaderboard" class="scorers-section"></div>
         </section>
 
         <section id="fixtures" class="tab-content">
@@ -48,7 +50,7 @@
             
             <div class="team-grid">
                 <div class="team-fixtures-box">
-                    <h3>📅 Team Fixtures</h3>
+                    <h3> Team Fixtures</h3>
                     <div id="team-fixtures-list"></div>
                 </div>
                 

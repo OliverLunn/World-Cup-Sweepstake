@@ -130,26 +130,202 @@ h2 {
     align-items: center;
 }
 
-#sweepstake-list p:last-child {
-    border-bottom: none;
+#sweepstake-list {
+    display: grid;
+    /* Responsive columns: 1 column on mobile, 2 on tablets, 4 on desktops */
+    grid-template-columns: 1fr; 
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+@media (min-width: 600px) {
+    #sweepstake-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    #sweepstake-list {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.sweepstake-card {
+    background: white;
+    border: 2px solid #004b87;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sweepstake-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.player-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #004b87;
+    margin-bottom: 12px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-wrap: break-word;
+}
+
+.player-teams {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 12px;
+    min-height: 80px;
+    justify-content: center;
+}
+
+.team-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px;
+    background: #f0f2f5;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-size: 13px;
+}
+
+.team-item:hover {
+    background: #e0e2e5;
+}
+
+.team-item span {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.player-status {
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+.player-status:contains("In Tournament") {
+    background: #c8e6c9;
+    color: #2e7d32;
+}
+
+.player-status:contains("Eliminated") {
+    background: #ffcdd2;
+    color: #c62828;
+}
+
+/* Fallback status styling */
+.player-status {
+    background: #c8e6c9;
+    color: #2e7d32;
 }
 
 /* Fixture Layouts */
+/* Fixture Date Groups */
+.fixture-date-group {
+    background: white;
+    border: 2px solid #004b87;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.fixture-date-header {
+    background: #004b87;
+    color: white;
+    padding: 15px 20px;
+}
+
+.fixture-date-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.fixture-uk-time {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.fixture-matches {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
 .fixture-card {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 10px;
     padding: 15px;
     border-bottom: 1px solid #eee;
     background: #fafafa;
-    margin-bottom: 8px;
+    margin-bottom: 0;
     border-radius: 6px;
 }
 
-.fixture-date {
+.fixture-card:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.fixture-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.fixture-time {
     font-size: 14px;
-    color: #777;
-    width: 80px;
+    font-weight: bold;
+    color: #004b87;
+    min-width: 60px;
+}
+
+.fixture-status {
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.fixture-status.status-scheduled {
+    background-color: #e8e8e8;
+    color: #666;
+}
+
+.fixture-status.status-live {
+    background-color: #ffecb3;
+    color: #e65100;
+    animation: pulse 1.5s infinite;
+}
+
+.fixture-status.status-complete {
+    background-color: #c8e6c9;
+    color: #2e7d32;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
 }
 
 .fixture-teams {
@@ -160,6 +336,13 @@ h2 {
     justify-content: center;
     align-items: center;
     gap: 10px;
+}
+
+.fixture-group {
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+    font-style: italic;
 }
 
 .fixture-score {
@@ -331,4 +514,108 @@ footer {
         text-align: center;
     }
     .fixture-date { width: auto; }
+}
+
+/* Scorers Leaderboard */
+.scorers-section {
+    margin-top: 40px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.scorers-section h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #004b87;
+}
+
+.scorers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 20px;
+}
+
+.scorer-card {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border: 2px solid #004b87;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.scorer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,75,135,0.2);
+}
+
+.scorer-rank {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffc107;
+    color: #333;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.scorer-photo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 10px auto 10px;
+    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.scorer-photo-placeholder {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin: 10px auto;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #666;
+}
+
+.scorer-name {
+    font-weight: bold;
+    font-size: 14px;
+    color: #004b87;
+    margin: 10px 0 5px 0;
+    word-wrap: break-word;
+}
+
+.scorer-team {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 8px;
+    font-style: italic;
+}
+
+.scorer-goals {
+    background: #004b87;
+    color: white;
+    padding: 8px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
 }
