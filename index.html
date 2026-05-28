@@ -14,6 +14,7 @@
             <button class="tab-btn active" onclick="openTab('sweepstake')">The Draw</button>
             <button class="tab-btn" onclick="openTab('fixtures')">Fixtures & Results</button>
             <button class="tab-btn" onclick="openTab('groups')">Group Standings</button>
+            <button class="tab-btn" onclick="openTab('squads')">Squads</button>
         </div>
     </header>
 
@@ -43,6 +44,12 @@
             <div id="groups-list" class="groups-container"></div>
         </section>
 
+        <section id="squads" class="tab-content">
+            <h2>Tournament Teams</h2>
+            <p class="instruction-text">Select a national team card to view their full tournament roster profile and upcoming fixtures.</p>
+            <div id="squad-cards-container" class="squad-grid"></div>
+        </section>
+
         <section id="team-detail" class="tab-content">
             <button onclick="closeTeamDetail()" class="back-btn">← Back to Dashboard</button>
             
@@ -56,7 +63,7 @@
                 
                 <div class="team-squad-box">
                     <h3>📋 Squad List</h3>
-                    <ul id="team-squad-list"></ul>
+                    <div id="team-squad-list"></div>
                 </div>
             </div>
         </section>

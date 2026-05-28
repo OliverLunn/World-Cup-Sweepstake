@@ -1,10 +1,11 @@
 // =========================================================================
 // 1. GLOBAL VARIABLES & ACCESSIBILITY PLACEHOLDERS
 // =========================================================================
-// These prevent the application from crashing if the fetch routine fails
 let fixturesData = [];
 let groupsData = {};
 let scorersData = [];
+let globalSquadsData = null;      // Holds the comprehensive squads.json data array
+let currentDashboardTab = 'sweepstake'; // Tracks user history for fluid back-navigation
 
 // =========================================================================
 // 2. HELPER FUNCTIONS
@@ -12,11 +13,10 @@ let scorersData = [];
 
 /**
  * Generates an HTML image tag for a country flag using FlagCDN.
- * Mapped to the ISO codes specified inside data.js
  */
 function getFlagHtml(teamName) {
     const code = teamCodes[teamName];
-    if (!code) return ''; // Returns blank if team name is "TBD" or unmapped
+    if (!code) return ''; 
     return `<img src="https://flagcdn.com/24x18/${code}.png" class="flag-icon" alt="${teamName} flag">`;
 }
 
@@ -38,7 +38,7 @@ function getMatchGroup(team1, team2) {
 // =========================================================================
 
 /**
- * Switches between standard view tabs (Sweepstake, Fixtures, Groups)
+ * Switches between standard view tabs (Sweepstake, Fixtures, Groups, Squads)
  */
 function openTab(tabId) {
     // Hide all view panels
@@ -48,11 +48,19 @@ function openTab(tabId) {
     document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
     
     // Display targeted panel view
-    document.getElementById(tabId).classList.add('active-content');
+    const targetElement = document.getElementById(tabId);
+    if (targetElement) {
+        targetElement.classList.add('active-content');
+    }
+    
+    // Save history point if navigating standard categories
+    if (tabId !== 'team-detail') {
+        currentDashboardTab = tabId;
+    }
     
     // Find matching navbar tab button and highlight it
     const targetButton = Array.from(document.querySelectorAll('.tab-btn'))
-        .find(btn => btn.getAttribute('onclick').includes(`'${tabId}'`));
+        .find(btn => btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(`'${tabId}'`));
     if (targetButton) {
         targetButton.classList.add('active');
     }
@@ -62,19 +70,16 @@ function openTab(tabId) {
  * Deep-link custom profile rendering engine for selected countries
  */
 function showTeamDetail(teamName) {
-    if (teamName === "TBD" || !teamName) return; // Ignore clicks on placeholder elements
+    if (teamName === "TBD" || !teamName) return; 
 
-    // Hide standard content tabs completely
+    // Hide active layout headers during single profile lookup focus
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active-content'));
     document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
     
-    // Reveal hidden team section
     document.getElementById('team-detail').classList.add('active-content');
-    
-    // Populate header title with flag and country name
     document.getElementById('team-title').innerHTML = `${getFlagHtml(teamName)} ${teamName}`;
     
-    // 1. Gather & Parse fixtures filtered explicitly for this team
+    // 1. Render Team Schedule
     const teamFixtures = fixturesData.filter(f => f.match.includes(teamName));
     const fixturesDiv = document.getElementById('team-fixtures-list');
     
@@ -85,9 +90,9 @@ function showTeamDetail(teamName) {
                 <div class="fixture-card">
                     <div class="fixture-date">${f.date}</div>
                     <div class="fixture-teams">
-                        <span class="team-link" onclick="showTeamDetail('${teams[0]}')">${getFlagHtml(teams[0])} ${teams[0]}</span> 
+                        <span class="team-link" onclick="showTeamDetail('${teams[0].trim()}')">${getFlagHtml(teams[0].trim())} ${teams[0].trim()}</span> 
                         vs 
-                        <span class="team-link" onclick="showTeamDetail('${teams[1]}')">${getFlagHtml(teams[1])} ${teams[1]}</span>
+                        <span class="team-link" onclick="showTeamDetail('${teams[1].trim()}')">${getFlagHtml(teams[1].trim())} ${teams[1].trim()}</span>
                     </div>
                     <div class="fixture-score">${f.score}</div>
                 </div>
@@ -97,22 +102,65 @@ function showTeamDetail(teamName) {
         fixturesDiv.innerHTML = "<p>No matches discovered for this team layout records.</p>";
     }
     
-    // 2. Fetch and render manual squad array records from data.js
+    // 2. Render Team Squad list 
     const squadUl = document.getElementById('team-squad-list');
-    const assignedSquad = squadsData[teamName];
     
-    if (assignedSquad && assignedSquad.length > 0) {
-        squadUl.innerHTML = assignedSquad.map(player => `<li>${player}</li>`).join('');
+    if (globalSquadsData && globalSquadsData[teamName]) {
+        const players = globalSquadsData[teamName];
+        const positions = { 'Goalkeepers': [], 'Defenders': [], 'Midfielders': [], 'Forwards': [] };
+
+        // Categorize players into simple positional arrays
+        players.forEach(p => {
+            const posRaw = (p.position || "").toLowerCase();
+            let listKey = 'Forwards'; // Default fallback position
+            
+            if (posRaw.includes('gk') || posRaw.includes('goalkeeper')) listKey = 'Goalkeepers';
+            else if (posRaw.includes('df') || posRaw.includes('defender')) listKey = 'Defenders';
+            else if (posRaw.includes('mf') || posRaw.includes('midfielder')) listKey = 'Midfielders';
+
+            positions[listKey].push(p);
+        });
+
+        // Convert grouped position lists to cleanly styled HTML blocks
+        squadUl.innerHTML = `
+            <div class="position-group-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; width: 100%;">
+                ${Object.keys(positions).map(posName => {
+                    if (positions[posName].length === 0) return '';
+                    return `
+                        <div class="position-block" style="background: #f8fafc; border-radius: 8px; padding: 12px; border: 1px solid #e2e8f0;">
+                            <h4 style="color: #004b87; border-bottom: 2px solid #cbd5e1; padding-bottom: 4px; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em;">${posName}</h4>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                ${positions[posName].map(p => {
+                                    const clubInfo = p.club ? `<span style="color: #a0aec0; font-size: 0.75rem; display: block; font-style: italic;">${p.club}</span>` : '';
+                                    return `
+                                        <li style="padding: 5px 0; font-size: 0.9rem; border-bottom: 1px solid #edf2f7;">
+                                            <strong>${p.player}</strong>
+                                            ${clubInfo}
+                                        </li>
+                                    `;
+                                }).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }).join('')}
+            </div>
+        `;
     } else {
-        squadUl.innerHTML = "<li>Squad specifications pending manual entry configurations...</li>";
+        // Fallback option to basic array map from data.js
+        const assignedSquad = typeof squadsData !== 'undefined' ? squadsData[teamName] : null;
+        if (assignedSquad && assignedSquad.length > 0) {
+            squadUl.innerHTML = `<ul style="padding-left: 20px;">${assignedSquad.map(player => `<li>${player}</li>`).join('')}</ul>`;
+        } else {
+            squadUl.innerHTML = "<p>Squad specification list pending data load configurations...</p>";
+        }
     }
 }
 
 /**
- * Direct exit link from detail view back to main dashboard
+ * Returns user back to whichever dashboard tab they were interacting with previously
  */
 function closeTeamDetail() {
-    openTab('sweepstake');
+    openTab(currentDashboardTab);
 }
 
 // =========================================================================
@@ -126,7 +174,6 @@ function renderBracket() {
     const bracketContainer = document.getElementById('bracket-container');
     if (!bracketContainer) return;
     
-    // Helper function to turn a matchup data block into structural layout HTML
     const createMatchupHtml = (m) => `
         <div class="bracket-matchup">
             <div class="bracket-team-row">
@@ -145,12 +192,10 @@ function renderBracket() {
             <h4>Quarter-Finals</h4>
             ${bracketData.quarters.map(createMatchupHtml).join('')}
         </div>
-        
         <div class="bracket-round">
             <h4>Semi-Finals</h4>
             ${bracketData.semis.map(createMatchupHtml).join('')}
         </div>
-        
         <div class="bracket-round">
             <h4>World Cup Final</h4>
             ${bracketData.final.map(createMatchupHtml).join('')}
@@ -159,10 +204,43 @@ function renderBracket() {
 }
 
 /**
- * Global application content rendering engine orchestration loop
+ * Generates the grid layout cards inside the squads panel browser container
+ */
+function renderSquadCards() {
+    const container = document.getElementById('squad-cards-container');
+    if (!container) return;
+
+    // Use keys from loaded squads.json file, or gather from group listings automatically
+    let activeTeams = [];
+    if (globalSquadsData) {
+        activeTeams = Object.keys(globalSquadsData);
+    } else if (groupsData && Object.keys(groupsData).length > 0) {
+        Object.values(groupsData).forEach(group => {
+            group.forEach(row => activeTeams.push(row.team));
+        });
+    } else {
+        activeTeams = Object.keys(teamCodes);
+    }
+
+    // Filter unique clean entries and sort alphabetically
+    activeTeams = [...new Set(activeTeams)].filter(t => t !== "TBD" && t !== "USA").sort();
+    if (!activeTeams.includes("United States") && teamCodes["United States"]) activeTeams.push("United States");
+    activeTeams.sort();
+
+    container.innerHTML = activeTeams.map(nation => `
+        <div class="squad-card" onclick="showTeamDetail('${nation.replace(/'/g, "\\'")}')">
+            ${getFlagHtml(nation)}
+            <h3>${nation}</h3>
+            <span class="view-roster-link">View Squad Roster →</span>
+        </div>
+    `).join('');
+}
+
+/**
+ * Core interface rendering engine loop
  */
 function renderApp() {
-    // 1. Generate Sweepstake Standings Dashboard
+    // 1. Generate Sweepstake Standings
     const sweepstakeDiv = document.getElementById('sweepstake-list');
     if (sweepstakeDiv) {
         sweepstakeDiv.innerHTML = sweepstakeData.map(p => `
@@ -181,75 +259,48 @@ function renderApp() {
         `).join('');
     }
 
-    // 2. Generate Universal Fixtures Master Schedule Tab
+    // 2. Generate Universal Fixtures
     const fixturesDiv = document.getElementById('fixtures-list');
     if (fixturesDiv) {
-        // Sort fixtures by date
-        const sortedFixtures = [...fixturesData].sort((a, b) => {
-            return new Date(a.utcDate || a.date) - new Date(b.utcDate || b.date);
-        });
-
-        // Group fixtures by date
+        const sortedFixtures = [...fixturesData].sort((a, b) => new Date(a.utcDate || a.date) - new Date(b.utcDate || b.date));
         const groupedByDate = {};
         sortedFixtures.forEach(f => {
-            if (!groupedByDate[f.date]) {
-                groupedByDate[f.date] = [];
-            }
+            if (!groupedByDate[f.date]) groupedByDate[f.date] = [];
             groupedByDate[f.date].push(f);
         });
 
-        // Render grouped fixtures
-        fixturesDiv.innerHTML = Object.keys(groupedByDate).map(dateKey => {
-            const fixtures = groupedByDate[dateKey];
-            
-            return `
-                <div class="fixture-date-group">
-                    <div class="fixture-date-header">
-                        <h3>${dateKey}</h3>
-                    </div>
-                    <div class="fixture-matches">
-                        ${fixtures.map(f => {
-                            const teams = f.match.split(" vs ");
-                            const team1 = teams[0].trim();
-                            const team2 = teams[1].trim();
-                            const matchGroup = getMatchGroup(team1, team2);
-                            
-                            // Determine status badge styling
-                            let statusBadge = '';
-                            let statusClass = '';
-                            if (f.status === 'Finished') {
-                                statusBadge = '✓ Complete';
-                                statusClass = 'status-complete';
-                            } else if (f.status === 'Live' || f.status === 'IN_PLAY') {
-                                statusBadge = '● In Play';
-                                statusClass = 'status-live';
-                            } else {
-                                statusBadge = '○ Scheduled';
-                                statusClass = 'status-scheduled';
-                            }
-                            
-                            return `
-                                <div class="fixture-card">
-                                    <div class="fixture-header">
-                                        <span class="fixture-status ${statusClass}">${statusBadge}</span>
-                                    </div>
-                                    <div class="fixture-teams">
-                                        <span class="team-link" onclick="showTeamDetail('${team1}')">${getFlagHtml(team1)} ${team1}</span> 
-                                        <span>vs</span> 
-                                        <span class="team-link" onclick="showTeamDetail('${team2}')">${getFlagHtml(team2)} ${team2}</span>
-                                    </div>
-                                    <div class="fixture-group">${matchGroup}</div>
-                                    <div class="fixture-score">${f.score}</div>
+        fixturesDiv.innerHTML = Object.keys(groupedByDate).map(dateKey => `
+            <div class="fixture-date-group">
+                <div class="fixture-date-header"><h3>${dateKey}</h3></div>
+                <div class="fixture-matches">
+                    ${groupedByDate[dateKey].map(f => {
+                        const teams = f.match.split(" vs ");
+                        const team1 = teams[0].trim();
+                        const team2 = teams[1].trim();
+                        const matchGroup = getMatchGroup(team1, team2);
+                        
+                        let statusBadge = f.status === 'Finished' ? '✓ Complete' : (f.status === 'Live' || f.status === 'IN_PLAY' ? '● Live' : '○ Scheduled');
+                        let statusClass = f.status === 'Finished' ? 'status-complete' : (f.status === 'Live' || f.status === 'IN_PLAY' ? 'status-live' : 'status-scheduled');
+                        
+                        return `
+                            <div class="fixture-card">
+                                <div class="fixture-header"><span class="fixture-status ${statusClass}">${statusBadge}</span></div>
+                                <div class="fixture-teams">
+                                    <span class="team-link" onclick="showTeamDetail('${team1}')">${getFlagHtml(team1)} ${team1}</span> 
+                                    <span>vs</span> 
+                                    <span class="team-link" onclick="showTeamDetail('${team2}')">${getFlagHtml(team2)} ${team2}</span>
                                 </div>
-                            `;
-                        }).join('')}
-                    </div>
+                                <div class="fixture-group">${matchGroup}</div>
+                                <div class="fixture-score">${f.score}</div>
+                            </div>
+                        `;
+                    }).join('')}
                 </div>
-            `;
-        }).join('');
+            </div>
+        `).join('');
     }
 
-    // 3. Generate Traditional Group Tables Tab
+    // 3. Generate Traditional Group Tables
     const groupsDiv = document.getElementById('groups-list');
     if (groupsDiv) {
         groupsDiv.innerHTML = Object.keys(groupsData).map(groupKey => `
@@ -267,10 +318,10 @@ function renderApp() {
         `).join('');
     }
 
-    // 4. Generate the Knockout Bracket Tree Visuals
+    // 4. Render Knockout Tree
     renderBracket();
 
-    // 5. Generate Top Goalscorers Leaderboard
+    // 5. Generate Leaderboard
     const scorersDiv = document.getElementById('scorers-leaderboard');
     if (scorersDiv) {
         if (scorersData && scorersData.length > 0) {
@@ -292,57 +343,50 @@ function renderApp() {
             scorersDiv.innerHTML = '<p>Top scorers data coming soon...</p>';
         }
     }
+
+    // 6. Run Squad Grid Browser layout generator
+    renderSquadCards();
 }
 
 // =========================================================================
-// 5. ASYNC CORE INITIALIZER SYSTEM
+// 5. ASYNC INITIALIZER SYSTEM
 // =========================================================================
 
 /**
- * Fires when browser parses scripts completely. Fetches remote data payloads
- * securely before executing DOM building logic loops.
+ * Performs parallel resource loads before calling interface draw processes
  */
 async function initApp() {
+    // Step A: Load Live Matches & Bracket Data
     try {
-        // Attempt to fetch the automated data file generated by your GitHub Action robot
         const response = await fetch('./live-data.json');
-        
-        if (!response.ok) {
-            throw new Error(`HTTP network response failed with status: ${response.status}`);
-        }
-        
+        if (!response.ok) throw new Error(`HTTP response status: ${response.status}`);
         const liveData = await response.json();
 
-        // Assign global references over our top-level placeholders
         fixturesData = liveData.fixturesData || [];
         groupsData = liveData.groupsData || {};
         scorersData = liveData.scorersData || [];
 
-        // Generate the bracket tree from the knockout stage matches
         const knockoutMatches = fixturesData.filter(m => 
-            m.match.includes('Quarter') || 
-            m.match.includes('Semi') || 
-            m.match.includes('Final')
+            m.match.includes('Quarter') || m.match.includes('Semi') || m.match.includes('Final')
         );
-        
-        if (knockoutMatches.length > 0) {
-            generateBracketFromMatches(knockoutMatches);
-        } else {
-            // If no knockout matches found, try to extract from the full fixtures
-            // by looking for matches that typically occur after group stage
-            generateBracketFromMatches(fixturesData.slice(-8)); // Last 8 matches are typically knockouts
-        }
-
-        console.log(`Data live synchronized. Source timestamp: ${liveData.lastUpdated}`);
+        generateBracketFromMatches(knockoutMatches.length > 0 ? knockoutMatches : fixturesData.slice(-8));
     } catch (err) {
         console.error("⚠️ Failed loading automated tournament feeds:", err);
-        console.warn("TIP: Ensure you test using a local development server extension (like Live Server) and not via file:/// browser pathways.");
-    } finally {
-        // The finally block ALWAYS executes, guaranteeing that the user interface 
-        // will build and render your navigation tabs, even if data file loading crashes.
-        renderApp();
     }
+
+    // Step B: Load Rich Roster JSON in parallel
+    try {
+        const squadsResponse = await fetch('./squads.json');
+        if (squadsResponse.ok) {
+            globalSquadsData = await squadsResponse.json();
+            console.log("Squads JSON payload synchronized.");
+        }
+    } catch (squadsErr) {
+        console.error("⚠️ Failed loading squads data file source:", squadsErr);
+    }
+
+    // Step C: Trigger UI Render
+    renderApp();
 }
 
-// Bind initialization tasks to browser resources loaded state triggers
 window.onload = initApp;
