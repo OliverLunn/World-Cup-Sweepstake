@@ -1,0 +1,171 @@
+{
+  "fixturesData": [
+    {
+      "date": "May 20",
+      "match": "Mexico vs Canada",
+      "score": "2 - 1",
+      "status": "Finished"
+    },
+    {
+      "date": "May 20",
+      "match": "USA vs Jamaica",
+      "score": "3 - 0",
+      "status": "Finished"
+    },
+    {
+      "date": "May 21",
+      "match": "Argentina vs Paraguay",
+      "score": "1 - 0",
+      "status": "Finished"
+    },
+    {
+      "date": "May 21",
+      "match": "Brazil vs Colombia",
+      "score": "2 - 2",
+      "status": "Finished"
+    },
+    {
+      "date": "May 22",
+      "match": "England vs France",
+      "score": "1 - 1",
+      "status": "Finished"
+    },
+    {
+      "date": "May 22",
+      "match": "Germany vs Spain",
+      "score": "2 - 0",
+      "status": "Finished"
+    },
+    {
+      "date": "May 23",
+      "match": "Portugal vs Netherlands",
+      "score": "TBD",
+      "status": "Live"
+    },
+    {
+      "date": "May 24",
+      "match": "South Korea vs Japan",
+      "score": "TBD",
+      "status": "Scheduled"
+    },
+    {
+      "date": "May 24",
+      "match": "Australia vs Iran",
+      "score": "TBD",
+      "status": "Scheduled"
+    },
+    {
+      "date": "May 25",
+      "match": "Morocco vs Egypt",
+      "score": "TBD",
+      "status": "Scheduled"
+    },
+    {
+      "date": "May 25",
+      "match": "Nigeria vs Ghana",
+      "score": "TBD",
+      "status": "Scheduled"
+    },
+    {
+      "date": "May 26",
+      "match": "Italy vs Croatia",
+      "score": "TBD",
+      "status": "Scheduled"
+    },
+    {
+      "date": "May 27",
+      "match": "Belgium vs Poland",
+      "score": "TBD",
+      "status": "Scheduled"
+    },
+    {
+      "date": "Jun 1",
+      "match": "Mexico vs USA",
+      "score": "TBD",
+      "status": "Scheduled"
+    },
+    {
+      "date": "Jun 2",
+      "match": "England vs Germany",
+      "score": "TBD",
+      "status": "Scheduled"
+    }
+  ],
+  "groupsData": {
+    "Group A": [
+      {
+        "team": "Mexico",
+        "pld": 2,
+        "gd": 1,
+        "pts": 6
+      },
+      {
+        "team": "Canada",
+        "pld": 2,
+        "gd": -1,
+        "pts": 3
+      },
+      {
+        "team": "Jamaica",
+        "pld": 1,
+        "gd": -3,
+        "pts": 0
+      }
+    ],
+    "Group B": [
+      {
+        "team": "Brazil",
+        "pld": 1,
+        "gd": 0,
+        "pts": 1
+      },
+      {
+        "team": "Colombia",
+        "pld": 1,
+        "gd": 0,
+        "pts": 1
+      },
+      {
+        "team": "Argentina",
+        "pld": 1,
+        "gd": 1,
+        "pts": 3
+      },
+      {
+        "team": "Paraguay",
+        "pld": 1,
+        "gd": -1,
+        "pts": 0
+      }
+    ],
+    "Group C": [
+      {
+        "team": "England",
+        "pld": 1,
+        "gd": 0,
+        "pts": 1
+      },
+      {
+        "team": "France",
+        "pld": 1,
+        "gd": 0,
+        "pts": 1
+      }
+    ],
+    "Group D": [
+      {
+        "team": "Germany",
+        "pld": 1,
+        "gd": 2,
+        "pts": 3
+      },
+      {
+        "team": "Spain",
+        "pld": 1,
+        "gd": -2,
+        "pts": 0
+      }
+    ]
+  },
+  "lastUpdated": "2026-05-28T14:30:00Z"
+}
