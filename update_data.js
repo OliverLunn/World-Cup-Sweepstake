@@ -19,10 +19,28 @@ async function fetchLiveWorldCupData() {
         });
         const tableData = await tableRes.json();
 
-        // 3. Translate API Matches into your website's exact format
+        // 3. Fetch Scorers (Top Goal Scorers)
+        let scorersData = [];
+        try {
+            const scorersRes = await fetch(`https://api.football-data.org/v4/competitions/${COMP_CODE}/scorers`, {
+                headers: { 'X-Auth-Token': API_KEY }
+            });
+            const scorersRawData = await scorersRes.json();
+            scorersData = (scorersRawData.scorers || []).slice(0, 10).map(s => ({
+                name: s.player.name,
+                goals: s.goals,
+                team: s.team.name,
+                photo: s.player.photo || null
+            }));
+        } catch (err) {
+            console.warn("Could not fetch scorers data:", err.message);
+        }
+
+        // 4. Translate API Matches into your website's exact format
         const fixturesData = matchData.matches.map(m => {
             const dateObj = new Date(m.utcDate);
             const localizedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            const ukTime = dateObj.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London' });
             
             let scoreStr = "TBD";
             if (m.score.fullTime.home !== null) {
@@ -31,13 +49,15 @@ async function fetchLiveWorldCupData() {
 
             return {
                 date: localizedDate,
+                utcDate: m.utcDate,
+                time: ukTime,
                 match: `${m.homeTeam.name} vs ${m.awayTeam.name}`,
                 score: scoreStr,
                 status: m.status === 'FINISHED' ? 'Finished' : m.status === 'IN_PLAY' ? 'Live' : 'Scheduled'
             };
         });
 
-        // 4. Translate API Standings into your website's exact group format
+        // 5. Translate API Standings into your website's exact group format
         const groupsData = {};
         tableData.standings.forEach(grp => {
             const groupName = grp.group.replace('_', ' '); // Converted from GROUP_A to GROUP A
@@ -49,10 +69,11 @@ async function fetchLiveWorldCupData() {
             }));
         });
 
-        // 5. Compile everything into a single payload file
+        // 6. Compile everything into a single payload file
         const finalPayload = {
             fixturesData,
             groupsData,
+            scorersData,
             lastUpdated: new Date().toUTCString()
         };
 

@@ -4,6 +4,7 @@
 // These prevent the application from crashing if the fetch routine fails
 let fixturesData = [];
 let groupsData = {};
+let scorersData = [];
 
 // =========================================================================
 // 2. HELPER FUNCTIONS
@@ -17,6 +18,19 @@ function getFlagHtml(teamName) {
     const code = teamCodes[teamName];
     if (!code) return ''; // Returns blank if team name is "TBD" or unmapped
     return `<img src="https://flagcdn.com/24x18/${code}.png" class="flag-icon" alt="${teamName} flag">`;
+}
+
+/**
+ * Finds which group a match belongs to by looking up team positions in groupsData
+ */
+function getMatchGroup(team1, team2) {
+    for (const [groupName, teams] of Object.entries(groupsData)) {
+        const teamNames = teams.map(t => t.team);
+        if (teamNames.includes(team1) && teamNames.includes(team2)) {
+            return groupName;
+        }
+    }
+    return 'Knockout Stage';
 }
 
 // =========================================================================
@@ -152,11 +166,18 @@ function renderApp() {
     const sweepstakeDiv = document.getElementById('sweepstake-list');
     if (sweepstakeDiv) {
         sweepstakeDiv.innerHTML = sweepstakeData.map(p => `
-            <p>
-                <strong>${p.player}</strong>: 
-                <span class="team-link" onclick="showTeamDetail('${p.team}')">${getFlagHtml(p.team)} ${p.team}</span> 
-                &nbsp;—&nbsp; <em>(${p.status})</em>
-            </p>
+            <div class="sweepstake-card">
+                <div class="player-name">${p.player}</div>
+                <div class="player-teams">
+                    ${(p.teams || []).map(team => `
+                        <div class="team-item" onclick="team !== 'TBD' && showTeamDetail('${team}')">
+                            ${getFlagHtml(team)}
+                            <span>${team}</span>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="player-status">${p.status}</div>
+            </div>
         `).join('');
     }
 
@@ -165,38 +186,64 @@ function renderApp() {
     if (fixturesDiv) {
         // Sort fixtures by date
         const sortedFixtures = [...fixturesData].sort((a, b) => {
-            return new Date(a.date) - new Date(b.date);
+            return new Date(a.utcDate || a.date) - new Date(b.utcDate || b.date);
         });
 
-        fixturesDiv.innerHTML = sortedFixtures.map(f => {
-            const teams = f.match.split(" vs ");
-            
-            // Determine status badge styling
-            let statusBadge = '';
-            let statusClass = '';
-            if (f.status === 'Finished') {
-                statusBadge = '✓ Complete';
-                statusClass = 'status-complete';
-            } else if (f.status === 'Live' || f.status === 'IN_PLAY') {
-                statusBadge = '● In Play';
-                statusClass = 'status-live';
-            } else {
-                statusBadge = '○ Scheduled';
-                statusClass = 'status-scheduled';
+        // Group fixtures by date
+        const groupedByDate = {};
+        sortedFixtures.forEach(f => {
+            if (!groupedByDate[f.date]) {
+                groupedByDate[f.date] = [];
             }
+            groupedByDate[f.date].push(f);
+        });
+
+        // Render grouped fixtures
+        fixturesDiv.innerHTML = Object.keys(groupedByDate).map(dateKey => {
+            const fixtures = groupedByDate[dateKey];
             
             return `
-                <div class="fixture-card">
-                    <div class="fixture-header">
-                        <div class="fixture-date">${f.date}</div>
-                        <span class="fixture-status ${statusClass}">${statusBadge}</span>
+                <div class="fixture-date-group">
+                    <div class="fixture-date-header">
+                        <h3>${dateKey}</h3>
                     </div>
-                    <div class="fixture-teams">
-                        <span class="team-link" onclick="showTeamDetail('${teams[0]}')">${getFlagHtml(teams[0])} ${teams[0]}</span> 
-                        <span>vs</span> 
-                        <span class="team-link" onclick="showTeamDetail('${teams[1]}')">${getFlagHtml(teams[1])} ${teams[1]}</span>
+                    <div class="fixture-matches">
+                        ${fixtures.map(f => {
+                            const teams = f.match.split(" vs ");
+                            const team1 = teams[0].trim();
+                            const team2 = teams[1].trim();
+                            const matchGroup = getMatchGroup(team1, team2);
+                            
+                            // Determine status badge styling
+                            let statusBadge = '';
+                            let statusClass = '';
+                            if (f.status === 'Finished') {
+                                statusBadge = '✓ Complete';
+                                statusClass = 'status-complete';
+                            } else if (f.status === 'Live' || f.status === 'IN_PLAY') {
+                                statusBadge = '● In Play';
+                                statusClass = 'status-live';
+                            } else {
+                                statusBadge = '○ Scheduled';
+                                statusClass = 'status-scheduled';
+                            }
+                            
+                            return `
+                                <div class="fixture-card">
+                                    <div class="fixture-header">
+                                        <span class="fixture-status ${statusClass}">${statusBadge}</span>
+                                    </div>
+                                    <div class="fixture-teams">
+                                        <span class="team-link" onclick="showTeamDetail('${team1}')">${getFlagHtml(team1)} ${team1}</span> 
+                                        <span>vs</span> 
+                                        <span class="team-link" onclick="showTeamDetail('${team2}')">${getFlagHtml(team2)} ${team2}</span>
+                                    </div>
+                                    <div class="fixture-group">${matchGroup}</div>
+                                    <div class="fixture-score">${f.score}</div>
+                                </div>
+                            `;
+                        }).join('')}
                     </div>
-                    <div class="fixture-score">${f.score}</div>
                 </div>
             `;
         }).join('');
@@ -222,6 +269,29 @@ function renderApp() {
 
     // 4. Generate the Knockout Bracket Tree Visuals
     renderBracket();
+
+    // 5. Generate Top Goalscorers Leaderboard
+    const scorersDiv = document.getElementById('scorers-leaderboard');
+    if (scorersDiv) {
+        if (scorersData && scorersData.length > 0) {
+            scorersDiv.innerHTML = `
+                <h3>🏆 Top Goalscorers</h3>
+                <div class="scorers-grid">
+                    ${scorersData.map((scorer, index) => `
+                        <div class="scorer-card">
+                            <div class="scorer-rank">#${index + 1}</div>
+                            ${scorer.photo ? `<img src="${scorer.photo}" alt="${scorer.name}" class="scorer-photo">` : '<div class="scorer-photo-placeholder">No Photo</div>'}
+                            <div class="scorer-name">${scorer.name}</div>
+                            <div class="scorer-team">${scorer.team}</div>
+                            <div class="scorer-goals">${scorer.goals} Goals</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        } else {
+            scorersDiv.innerHTML = '<p>Top scorers data coming soon...</p>';
+        }
+    }
 }
 
 // =========================================================================
@@ -246,6 +316,7 @@ async function initApp() {
         // Assign global references over our top-level placeholders
         fixturesData = liveData.fixturesData || [];
         groupsData = liveData.groupsData || {};
+        scorersData = liveData.scorersData || [];
 
         // Generate the bracket tree from the knockout stage matches
         const knockoutMatches = fixturesData.filter(m => 
