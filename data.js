@@ -112,22 +112,24 @@ const teamCodes = {
 // ==========================================
 // 2. SWEEPSTAKE PLAYERS & ASSIGNED TEAMS
 // ==========================================
-// Update this list with your actual friends, their assigned countries,
-// and change status to "Eliminated" when they go home!
+// Each player has an array of 3 teams they picked in the sweepstake. We will update these with actual team names once we fetch the data from the API
 const sweepstakeData = [
-    { player: "Tom Antolin", team: "TBD", status: "In Tournament" },
-    { player: "Anna Dalmasso", team: "TBD", status: "In Tournament" },
-    { player: "Jake Dorman", team: "TBD", status: "In Tournament" },
-    { player: "Jacob Campbell", team: "TBD", status: "In Tournament" },
-    { player: "Breagh Macpherson", team: "TBD", status: "In Tournament" },
-    { player: "Dan Ford", team: "TBD", status: "In Tournament" },
-    { player: "Dan Ferring", team: "TBD", status: "In Tournament" },
-    { player: "Rayff De Souza", team: "TBD", status: "In Tournament" },
-    { player: "Greg Humphrey-Evans", team: "TBD", status: "In Tournament" },
-    { player: "Oliver Lunn", team: "TBD", status: "In Tournament" },
-    { player: "Tyler Rolfe", team: "TBD", status: "In Tournament" },
-    { player: "Adela Fernandez", team: "TBD", status: "In Tournament" },
-    { player: "Guillaume Hewitt", team: "TBD", status: "In Tournament" }
+    { player: "Tom Antolin", teams: ["TBD","TBD", "TBD"], status: "In Tournament" },
+    { player: "Anna Dalmasso", teams: ["TBD"], status: "In Tournament" },
+    { player: "Jake Dorman", teams: ["TBD"], status: "In Tournament" },
+    { player: "Jacob Campbell", teams: ["TBD"], status: "In Tournament" },
+    { player: "Breagh Macpherson", teams: ["TBD"], status: "In Tournament" },
+    { player: "Dan Ford", teams: ["TBD"], status: "In Tournament" },
+    { player: "Dan Ferring", teams: ["TBD"], status: "In Tournament" },
+    { player: "Rayff De Souza", teams: ["TBD"], status: "In Tournament" },
+    { player: "Greg Humphrey-Evans", teams: ["TBD"], status: "In Tournament" },
+    { player: "Oliver Lunn", teams: ["TBD"], status: "In Tournament" },
+    { player: "Tyler Rolfe", teams: ["TBD"], status: "In Tournament" },
+    { player: "Adela Fernandez", teams: ["TBD"], status: "In Tournament" },
+    { player: "Guillaume Hewitt", teams: ["TBD"], status: "In Tournament" },
+    { player: "Martin Valincius", teams: ["TBD"], status: "In Tournament" },
+    { player: "Sameer Jin", teams: ["TBD"], status: "In Tournament" },
+    { player: "Hattie O'Brien", teams: ["TBD"], status: "In Tournament" }
 ];
 
 // ==========================================

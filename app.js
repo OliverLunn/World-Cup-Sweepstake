@@ -163,11 +163,34 @@ function renderApp() {
     // 2. Generate Universal Fixtures Master Schedule Tab
     const fixturesDiv = document.getElementById('fixtures-list');
     if (fixturesDiv) {
-        fixturesDiv.innerHTML = fixturesData.map(f => {
+        // Sort fixtures by date
+        const sortedFixtures = [...fixturesData].sort((a, b) => {
+            return new Date(a.date) - new Date(b.date);
+        });
+
+        fixturesDiv.innerHTML = sortedFixtures.map(f => {
             const teams = f.match.split(" vs ");
+            
+            // Determine status badge styling
+            let statusBadge = '';
+            let statusClass = '';
+            if (f.status === 'Finished') {
+                statusBadge = '✓ Complete';
+                statusClass = 'status-complete';
+            } else if (f.status === 'Live' || f.status === 'IN_PLAY') {
+                statusBadge = '● In Play';
+                statusClass = 'status-live';
+            } else {
+                statusBadge = '○ Scheduled';
+                statusClass = 'status-scheduled';
+            }
+            
             return `
                 <div class="fixture-card">
-                    <div class="fixture-date">${f.date}</div>
+                    <div class="fixture-header">
+                        <div class="fixture-date">${f.date}</div>
+                        <span class="fixture-status ${statusClass}">${statusBadge}</span>
+                    </div>
                     <div class="fixture-teams">
                         <span class="team-link" onclick="showTeamDetail('${teams[0]}')">${getFlagHtml(teams[0])} ${teams[0]}</span> 
                         <span>vs</span> 

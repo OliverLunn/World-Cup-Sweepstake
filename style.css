@@ -137,8 +137,8 @@ h2 {
 /* Fixture Layouts */
 .fixture-card {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 10px;
     padding: 15px;
     border-bottom: 1px solid #eee;
     background: #fafafa;
@@ -146,10 +146,50 @@ h2 {
     border-radius: 6px;
 }
 
+.fixture-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
 .fixture-date {
     font-size: 14px;
     color: #777;
-    width: 80px;
+    font-weight: 500;
+}
+
+.fixture-status {
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.fixture-status.status-scheduled {
+    background-color: #e8e8e8;
+    color: #666;
+}
+
+.fixture-status.status-live {
+    background-color: #ffecb3;
+    color: #e65100;
+    animation: pulse 1.5s infinite;
+}
+
+.fixture-status.status-complete {
+    background-color: #c8e6c9;
+    color: #2e7d32;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
 }
 
 .fixture-teams {
