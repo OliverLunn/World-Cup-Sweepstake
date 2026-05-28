@@ -6,6 +6,9 @@ on:
     - cron: '0 */12 * * *'
   workflow_dispatch: # Allows you to manually click a button to force update anytime
 
+permissions:
+  contents: write
+
 jobs:
   update-scores:
     runs-on: ubuntu-latest
