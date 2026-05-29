@@ -180,7 +180,7 @@ const sweepstakeData = [
     { player: "Martin Valincius", teams: ["TBD","TBD"], status: "In Tournament" },
     { player: "Sameer Jin", teams: ["TBD","TBD"], status: "In Tournament" },
     { player: "Hattie O'Brien", teams: ["TBD","TBD"], status: "In Tournament" },
-    { player: "Anna Beer", teams: ["TBD","TBD"], status: "In Tournament" }.
+    { player: "Anna Beer", teams: ["TBD","TBD"], status: "In Tournament" },
     { player: "Ewan Kennett", teams: ["TBD","TBD"], status: "In Tournament" }
 ];
 
