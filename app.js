@@ -393,8 +393,8 @@ async function startDraw() {
         return;
     }
 
-    const width = 720;
-    const height = 680;
+    const width = 750;
+    const height = 700;
     const left = (window.screen.width / 2) - (width / 2);
     const top = (window.screen.height / 2) - (height / 2);
 
@@ -416,27 +416,107 @@ async function startDraw() {
             <meta charset="UTF-8">
             <title>🔴 Live Sweepstake Assignment Draw</title>
             <style>
-                body { font-family: sans-serif; background-color: #f1f5f9; color: #1e293b; padding: 25px; margin: 0; text-align: center; }
-                .draw-box { max-width: 620px; margin: 0 auto; background: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 3px solid #004b87; }
+                body { 
+                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+                    background-color: #f1f5f9; 
+                    color: #1e293b; 
+                    padding: 25px; 
+                    margin: 0; 
+                    text-align: center; 
+                }
+                .draw-box { max-width: 650px; margin: 0 auto; background: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 3px solid #004b87; }
                 h1 { color: #004b87; margin-bottom: 5px; }
-                .live-panel { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 2px solid #2563eb; border-radius: 10px; padding: 25px; margin: 20px 0; color: #1e3a8a; font-size: 1.15rem; }
-                .terminal-log { background: #1e293b; color: #cbd5e1; font-family: monospace; padding: 15px; border-radius: 6px; max-height: 220px; overflow-y: auto; text-align: left; font-size: 0.85rem; }
+                
+                /* Match Website Dashboard Styling */
+                .active-draw-container {
+                    margin: 30px auto;
+                    max-width: 400px;
+                    display: flex;
+                    justify-content: center;
+                }
+                .sweepstake-card {
+                    background: #ffffff;
+                    border: 2px solid #004b87;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 15px rgba(0, 75, 135, 0.15);
+                    padding: 24px;
+                    width: 100%;
+                    text-align: left;
+                    box-sizing: border-box;
+                    transition: all 0.3s ease;
+                }
+                .player-name {
+                    font-size: 1.4rem;
+                    font-weight: 700;
+                    color: #004b87;
+                    margin-bottom: 16px;
+                    border-bottom: 2px solid #e2e8f0;
+                    padding-bottom: 8px;
+                    text-align: center;
+                }
+                .player-teams {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 12px;
+                    min-height: 90px;
+                }
+                .team-item {
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    padding: 10px 14px;
+                    background: #f8fafc;
+                    border: 1px solid #e2e8f0;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: 1.1rem;
+                    animation: fadeIn 0.5s ease forwards;
+                }
+                .flag-icon {
+                    width: 24px;
+                    height: 18px;
+                    object-fit: cover;
+                    border-radius: 2px;
+                    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+                }
+                .status-ticker {
+                    font-size: 1rem;
+                    font-weight: bold;
+                    color: #2563eb;
+                    margin-top: 15px;
+                    min-height: 24px;
+                }
+
+                .terminal-log { background: #1e293b; color: #cbd5e1; font-family: monospace; padding: 15px; border-radius: 6px; max-height: 180px; overflow-y: auto; text-align: left; font-size: 0.85rem; }
                 .log-row { margin-bottom: 6px; border-left: 3px solid #3b82f6; padding-left: 8px; }
                 .log-row.done { border-left-color: #10b981; color: #10b981; font-weight: bold; }
                 .action-btn { margin-top: 20px; padding: 12px 28px; font-weight: bold; background: #10b981; color: white; border: none; border-radius: 20px; cursor: pointer; display: none; }
+                
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(5px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
             </style>
         </head>
         <body>
             <div class="draw-box">
-                <h1>Live Sweepstake Allocation Draw</h1>
-                <p>Distributing 1 Seeded Team (Pot 1) and 1 Unseeded Team (Pot 2) to each participant...</p>
-                <div class="live-panel">
-                    <div id="display-player">Preparing seed pots...</div>
-                    <div id="display-action" style="font-size: 0.9rem; margin-top: 10px; opacity: 0.85;">Isolating teams...</div>
+                <h1>Live Sweepstake Draw</h1>
+                <p style="color: #64748b;">1 top 18 team (Pot 1) and 1 remaining team (Pot 2) per participant.</p>
+                
+                <!-- Live Website-Style Card Display -->
+                <div class="active-draw-container">
+                    <div class="sweepstake-card">
+                        <div id="card-player-name" class="player-name">Preparing...</div>
+                        <div id="card-player-teams" class="player-teams">
+                            <!-- Teams dynamically spawn here -->
+                        </div>
+                    </div>
                 </div>
-                <h3 style="text-align: left;">📋 Real-time Draw Feed</h3>
+                <div id="draw-ticker" class="status-ticker">Connecting to system...</div>
+
+                <h3 style="text-align: left; font-size: 0.95rem; color: #475569;">Live Draw Log Feed</h3>
                 <div id="terminal-feed" class="terminal-log"></div>
-                <button id="close-frame-btn" class="action-btn" onclick="window.close()">💾 Save JSON & Close</button>
+                <button id="close-frame-btn" class="action-btn" onclick="window.close()">Save JSON & Close</button>
             </div>
         </body>
         </html>
@@ -445,10 +525,12 @@ async function startDraw() {
     const isolatedEngineScript = `
         (async function() {
             const currentPlayers = ${JSON.stringify(sweepstakeData)};
+            const teamCodesMap = ${JSON.stringify(teamCodes)};
             
             const logBox = document.getElementById('terminal-feed');
-            const playerBox = document.getElementById('display-player');
-            const actionBox = document.getElementById('display-action');
+            const cardName = document.getElementById('card-player-name');
+            const cardTeams = document.getElementById('card-player-teams');
+            const drawTicker = document.getElementById('draw-ticker');
             
             function postLog(msg, isCompletedMarker = false) {
                 const el = document.createElement('div');
@@ -456,6 +538,12 @@ async function startDraw() {
                 el.textContent = msg;
                 logBox.appendChild(el);
                 logBox.scrollTop = logBox.scrollHeight;
+            }
+
+            function getFlag(teamName) {
+                const code = teamCodesMap[teamName];
+                if (!code) return ''; 
+                return '<img src="https://flagcdn.com/24x18/' + code + '.png" class="flag-icon" alt="">';
             }
 
             function shuffle(sourceArr) {
@@ -467,36 +555,64 @@ async function startDraw() {
                 return arr;
             }
 
-            const pot1Teams = ["Argentina", "France", "England", "Brazil", "Germany", "Spain", "Belgium", "Netherlands", "Portugal", "Italy", "Uruguay", "Mexico", "USA", "United States", "Canada", "Colombia", "Croatia", "Morocco"];
-            const pot2Teams = ["South Korea", "Czechia", "Czech Republic", "Paraguay", "Japan", "Saudi Arabia", "Uzbekistan", "Senegal", "Algeria", "Austria", "Jordan", "Congo DR", "South Africa", "Bosnia-Herzegovina", "Iran", "Egypt", "Ghana", "Nigeria"];
+            const pot1Teams = ["France", "Spain", "Argentina", "England", "Portugal", "Brazil", 
+            "Netherlands", "Morocco", "Belgium", "Germany", "Croatia", "Colombia", "Senegal", 
+            "Mexico", "USA", "Uruguay", "Japan", "Switzerland"];
+            
+            const pot2Teams = ["Canada", "Norway", "Scotland", "Austria", "Bosnia & Herzegovina", 
+            "Sweden", "Turkey", "Czechia", "Algeria", "Cape Verde", "DR Congo", "Egypt", "Ghana", 
+            "Ivory Coast", "South Africa", "Australia", "Iran", "Iraq", "Jordan", "Qatar", "Saudi Arabia", 
+            "South Korea", "Uzbekistan", "Ecuador", "Paraguay", "Panama", "Haiti", "Curaçao", "New Zealand"];
 
             let pot1 = shuffle(pot1Teams);
             let pot2 = shuffle(pot2Teams);
 
-            postLog("📡 Connected to main workspace dataset.");
-            postLog("🎲 Pot 1 and Pot 2 structures randomized independently.");
-            await new Promise(r => setTimeout(r, 1000));
+            postLog("Connected to main workspace dataset.");
+            postLog("Pots randomized. Starting draft sequencing...");
+            await new Promise(r => setTimeout(r, 1500));
 
             for (let i = 0; i < currentPlayers.length; i++) {
                 let p = currentPlayers[i];
-                playerBox.innerHTML = "Drawing assignments for: <strong>" + p.player + "</strong>";
                 
+                // Set Up Card for Current Player
+                cardName.textContent = p.player;
+                cardTeams.innerHTML = ''; 
+                drawTicker.style.color = "#2563eb";
+                drawTicker.textContent = "Selecting Seeded Contender...";
+                
+                // 1. Draw Pot 1 Team
                 let t1 = pot1.shift();
                 p.teams[0] = t1;
-                actionBox.textContent = "Spinning Pot 1...";
-                postLog("🎟️ " + p.player + " assigned " + t1 + " from Pot 1");
-                await new Promise(r => setTimeout(r, 600));
+                cardTeams.innerHTML = '<div class="team-item">' + getFlag(t1) + '<span>' + t1 + '</span></div>';
+                postLog("🎟️ " + p.player + " assigned " + t1 + " (Pot 1)");
+                
+                // WAIT EXACTLY 2 SECONDS BEFORE POT 2
+                drawTicker.textContent = "Pot 1 drawn. Waiting for Pot 2...";
+                await new Promise(r => setTimeout(r, 2000));
 
+                // 2. Draw Pot 2 Team
+                drawTicker.textContent = "Selecting Unseeded Qualifier...";
                 let t2 = pot2.shift();
                 p.teams[1] = t2;
-                actionBox.textContent = "Spinning Pot 2...";
-                postLog("🎟️ " + p.player + " assigned " + t2 + " from Pot 2");
-                await new Promise(r => setTimeout(r, 600));
+                cardTeams.innerHTML += '<div class="team-item">' + getFlag(t2) + '<span>' + t2 + '</span></div>';
+                postLog("🎟️ " + p.player + " assigned " + t2 + " (Pot 2)");
+
+                // IF NOT THE LAST PLAYER, WAIT EXACTLY 5 SECONDS BEFORE NEXT PLAYER
+                if (i < currentPlayers.length - 1) {
+                    drawTicker.style.color = "#475569";
+                    let countdown = 5;
+                    while (countdown > 0) {
+                        drawTicker.textContent = "Next player in " + countdown + "s...";
+                        await new Promise(r => setTimeout(r, 1000));
+                        countdown--;
+                    }
+                }
             }
 
-            playerBox.innerHTML = "<strong>🎉 Randomization Draw Complete!</strong>";
-            actionBox.textContent = "All teams assigned seamlessly.";
-            postLog("💾 Compiling download payload...", true);
+            cardName.textContent = "Allocation Complete.";
+            drawTicker.style.color = "#10b981";
+            drawTicker.textContent = "All teams locked in.";
+            postLog("Compiling data download asset payload...", true);
             
             window.opener.updateMainFromPopup(currentPlayers);
             document.getElementById('close-frame-btn').style.display = 'inline-block';
