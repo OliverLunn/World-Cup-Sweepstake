@@ -1,0 +1,146 @@
+[
+  {
+    "player": "Tom Antolin",
+    "teams": [
+      "Mexico",
+      "Senegal"
+    ],
+    "status": "In Tournament"
+  },
+  {
+    "player": "Anna Dalmasso",
+    "teams": [
+      "Argentina",
+      "Paraguay"
+    ],
+    "status": "In Tournament"
+  },
+  {
+    "player": "Jake Dorman",
+    "teams": [
+      "Italy",
+      "Jordan"
+    ],
+    "status": "In Tournament"
+  },
+  {
+    "player": "Jacob Campbell",
+    "teams": [
+      "Morocco",
+      "Iran"
+    ],
+    "status": "In Tournament"
+  },
+  {
+    "player": "Breagh Macpherson",
+    "teams": [
+      "United States",
+      "Czechia"
+    ],
+    "status": "In Tournament"
+  },
+  {
+    "player": "Dan Ford",
+    "teams": [
+      "Uruguay",
+      "Congo DR"
+    ],
+    "status": "In Tournament"
+  },
+  {
+    "player": "Dan Ferring",
+    "teams": [
+      "Portugal",
+      "Uzbekistan"
+    ],
+    "status": "In Tournament"
+  },
+  {
+    "player": "Rayff De Souza",
+    "teams": [
+      "Spain",
+      "Saudi Arabia"
+    ],
+    "status": "In Tournament"
+  },
+  {
+    "player": "Greg Humphrey-Evans",
+    "teams": [
+      "USA",
+      "Algeria"
+    ],
+    "status": "In Tournament"
+  },
+  {
+    "player": "Oliver Lunn",
+    "teams": [
+      "Croatia",
+      "Ghana"
+    ],
+    "status": "In Tournament"
+  },
+  {
+    "player": "Tyler Rolfe",
+    "teams": [
+      "Colombia",
+      "Nigeria"
+    ],
+    "status": "In Tournament"
+  },
+  {
+    "player": "Adela Fernandez",
+    "teams": [
+      "Brazil",
+      "Egypt"
+    ],
+    "status": "In Tournament"
+  },
+  {
+    "player": "Guillaume Hewitt",
+    "teams": [
+      "England",
+      "South Africa"
+    ],
+    "status": "In Tournament"
+  },
+  {
+    "player": "Martin Valincius",
+    "teams": [
+      "Canada",
+      "Bosnia-Herzegovina"
+    ],
+    "status": "In Tournament"
+  },
+  {
+    "player": "Sameer Jin",
+    "teams": [
+      "Germany",
+      "South Korea"
+    ],
+    "status": "In Tournament"
+  },
+  {
+    "player": "Hattie O'Brien",
+    "teams": [
+      "Netherlands",
+      "Czech Republic"
+    ],
+    "status": "In Tournament"
+  },
+  {
+    "player": "Anna Beer",
+    "teams": [
+      "France",
+      "Austria"
+    ],
+    "status": "In Tournament"
+  },
+  {
+    "player": "Ewan Kennett",
+    "teams": [
+      "Belgium",
+      "Japan"
+    ],
+    "status": "In Tournament"
+  }
+]
