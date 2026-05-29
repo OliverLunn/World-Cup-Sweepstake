@@ -45,3 +45,14 @@ Execution of the draw:
 
 
 Once the draw is finished the results are downloaded and pushed to the website and I will put a copy in the gc. 
+
+
+
+ const pot1Teams = ["France", "Spain", "Argentina", "England", "Portugal", "Brazil", 
+            "Netherlands", "Morocco", "Belgium", "Germany", "Croatia", "Colombia", "Senegal", 
+            "Mexico", "USA", "Uruguay", "Japan", "Switzerland"];
+            
+            const pot2Teams = ["Canada", "Norway", "Scotland", "Austria", "Bosnia & Herzegovina", 
+            "Sweden", "Turkey", "Czechia", "Algeria", "Cape Verde", "DR Congo", "Egypt", "Ghana", 
+            "Ivory Coast", "South Africa", "Australia", "Iran", "Iraq", "Jordan", "Qatar", "Saudi Arabia", 
+            "South Korea", "Uzbekistan", "Ecuador", "Paraguay", "Panama", "Haiti", "Curaçao", "New Zealand"];
