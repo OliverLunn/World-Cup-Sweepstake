@@ -389,4 +389,459 @@ async function initApp() {
     renderApp();
 }
 
-window.onload = initApp;
+// =========================================================================
+// 6. SWEEPSTAKE DRAW SYSTEM
+// =========================================================================
+
+let drawState = {
+    isDrawing: false,
+    currentPlayerIndex: 0,
+    currentPot: 1, // 1 or 2
+    pot1: [],
+    pot2: [],
+    drawInProgress: false,
+    drawPassword: "wc2026" // Set your draw password here
+};
+
+/**
+ * Divides all tournament teams into two ranked pots
+ * Ensures each player gets at least one team from each pot
+ */
+function dividePots() {
+    const allTeams = getAllAvailableTeams();
+    const numberOfPlayers = sweepstakeData.length;
+    
+    // Validate we have enough teams
+    if (allTeams.length < numberOfPlayers * 2) {
+        alert(`Not enough teams! Need at least ${numberOfPlayers * 2} teams for ${numberOfPlayers} players. Found ${allTeams.length}.`);
+        drawState.isDrawing = false;
+        drawState.drawInProgress = false;
+        return false;
+    }
+    
+    // Define seeded/top-ranked teams (Pot 1 candidates)
+    const pot1Candidates = [
+        "Argentina", "France", "England", "Brazil", "Germany", "Spain", 
+        "Belgium", "Netherlands", "Portugal", "Italy", "Uruguay", "Mexico",
+        "Denmark", "Croatia", "Senegal", "Wales", "Japan", "South Korea"
+    ];
+    
+    // Separate teams into seeded and non-seeded
+    const seededTeams = allTeams.filter(team => pot1Candidates.includes(team));
+    const nonSeededTeams = allTeams.filter(team => !pot1Candidates.includes(team));
+    
+    // Build pot arrays
+    const pot1Array = [];
+    const pot2Array = [];
+    
+    // Distribute seeded teams first to pot1
+    for (let i = 0; i < numberOfPlayers && i < seededTeams.length; i++) {
+        pot1Array.push(seededTeams[i]);
+    }
+    
+    // If pot1 needs more teams, take from non-seeded
+    for (let i = pot1Array.length; i < numberOfPlayers && i < seededTeams.length + nonSeededTeams.length; i++) {
+        const nonSeededIndex = i - seededTeams.length;
+        if (nonSeededIndex < nonSeededTeams.length) {
+            pot1Array.push(nonSeededTeams[nonSeededIndex]);
+        }
+    }
+    
+    // Build pot2 with remaining teams
+    let nonSeededStartIndex = Math.max(0, numberOfPlayers - seededTeams.length);
+    for (let i = nonSeededStartIndex; i < nonSeededTeams.length && pot2Array.length < numberOfPlayers; i++) {
+        pot2Array.push(nonSeededTeams[i]);
+    }
+    
+    // If pot2 still needs teams, use seeded teams that weren't used
+    for (let i = pot1Array.length; i < seededTeams.length && pot2Array.length < numberOfPlayers; i++) {
+        pot2Array.push(seededTeams[i]);
+    }
+    
+    // Final validation
+    if (pot1Array.length < numberOfPlayers || pot2Array.length < numberOfPlayers) {
+        alert(`Unable to divide teams fairly. Pot1: ${pot1Array.length}, Pot2: ${pot2Array.length}, Players: ${numberOfPlayers}`);
+        drawState.isDrawing = false;
+        drawState.drawInProgress = false;
+        return false;
+    }
+    
+    // Remove any null or undefined values
+    const cleanPot1 = pot1Array.filter(team => team && team !== null && team !== undefined).slice(0, numberOfPlayers);
+    const cleanPot2 = pot2Array.filter(team => team && team !== null && team !== undefined).slice(0, numberOfPlayers);
+    
+    // Final check
+    if (cleanPot1.length < numberOfPlayers || cleanPot2.length < numberOfPlayers) {
+        alert(`Not enough valid teams. Pot1: ${cleanPot1.length}, Pot2: ${cleanPot2.length}, Players: ${numberOfPlayers}`);
+        drawState.isDrawing = false;
+        drawState.drawInProgress = false;
+        return false;
+    }
+    
+    // Shuffle both pots independently
+    drawState.pot1 = shuffleArray(cleanPot1);
+    drawState.pot2 = shuffleArray(cleanPot2);
+    
+    return true;
+}
+
+/**
+ * Gets all unique teams from the tournament fixtures
+ */
+function getAllAvailableTeams() {
+    const teams = new Set();
+    fixturesData.forEach(fixture => {
+        const matchTeams = fixture.match.split(" vs ");
+        const team1 = matchTeams[0] ? matchTeams[0].trim() : null;
+        const team2 = matchTeams[1] ? matchTeams[1].trim() : null;
+        if (team1 && team1 !== "TBD") teams.add(team1);
+        if (team2 && team2 !== "TBD") teams.add(team2);
+    });
+    
+    // Also add teams from groups if available
+    if (groupsData && Object.keys(groupsData).length > 0) {
+        Object.values(groupsData).forEach(group => {
+            group.forEach(row => {
+                if (row.team && row.team !== "TBD") {
+                    teams.add(row.team);
+                }
+            });
+        });
+    }
+    
+    return Array.from(teams).filter(team => team && team !== "TBD" && team !== null).sort();
+}
+
+/**
+ * Shuffles an array using Fisher-Yates algorithm
+ */
+function shuffleArray(arr) {
+    const shuffled = [...arr];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
+
+/**
+ * Performs one team draw for current player and pot
+ */
+async function drawOneTeam() {
+    if (!drawState.isDrawing || drawState.currentPlayerIndex >= sweepstakeData.length) {
+        return;
+    }
+
+    const player = sweepstakeData[drawState.currentPlayerIndex];
+    const pot = drawState.currentPot === 1 ? drawState.pot1 : drawState.pot2;
+    
+    if (pot.length === 0) {
+        console.error("Pot is empty!");
+        finishDraw();
+        return;
+    }
+
+    // Draw a team from the current pot, filtering out any null/undefined values
+    let drawnTeam = null;
+    while (pot.length > 0 && !drawnTeam) {
+        const candidate = pot.shift();
+        if (candidate && candidate !== null && candidate !== undefined) {
+            drawnTeam = candidate;
+        }
+    }
+
+    if (!drawnTeam) {
+        console.error("No valid team to draw from pot!");
+        finishDraw();
+        return;
+    }
+    
+    // Assign to correct slot
+    if (drawState.currentPot === 1) {
+        player.teams[0] = drawnTeam;
+    } else {
+        player.teams[1] = drawnTeam;
+    }
+
+    // Update UI
+    updateDrawStatus();
+    renderApp();
+
+    // Animate the card
+    const cards = document.querySelectorAll('.sweepstake-card');
+    const currentCard = cards[drawState.currentPlayerIndex];
+    if (currentCard) {
+        currentCard.classList.add('drawing-team');
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        currentCard.classList.remove('drawing-team');
+    }
+
+    // Move to next player or next pot
+    if (drawState.currentPot === 1) {
+        // Just drew from pot 1, now draw from pot 2
+        drawState.currentPot = 2;
+        updateDrawStatus();
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        await drawOneTeam();
+    } else {
+        // Just drew from pot 2, move to next player
+        drawState.currentPlayerIndex++;
+        drawState.currentPot = 1;
+        
+        if (drawState.currentPlayerIndex < sweepstakeData.length) {
+            updateDrawStatus();
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            await drawOneTeam();
+        } else {
+            // Draw complete
+            finishDraw();
+        }
+    }
+}
+
+/**
+ * Updates the draw status display
+ */
+function updateDrawStatus() {
+    const statusDiv = document.getElementById('draw-status');
+    if (!statusDiv) return;
+
+    if (drawState.currentPlayerIndex < sweepstakeData.length) {
+        const player = sweepstakeData[drawState.currentPlayerIndex];
+        document.querySelector('#current-player strong').textContent = player.player;
+        document.querySelector('#current-pot strong').textContent = 
+            drawState.currentPot === 1 ? 'Pot 1 (Top-Ranked Teams)' : 'Pot 2 (Other Teams)';
+        document.getElementById('pot1-count').textContent = drawState.pot1.length;
+        document.getElementById('pot2-count').textContent = drawState.pot2.length;
+    }
+}
+
+/**
+ * Completes the draw and cleans up
+ */
+function finishDraw() {
+    drawState.isDrawing = false;
+    drawState.drawInProgress = false;
+
+    // Hide status
+    const statusDiv = document.getElementById('draw-status');
+    if (statusDiv) {
+        statusDiv.style.display = 'none';
+    }
+
+    const startBtn = document.getElementById('start-draw-btn');
+    
+    if (startBtn) {
+        startBtn.style.display = 'none';
+        startBtn.disabled = true;
+    }
+
+    // Save results to localStorage
+    try {
+        localStorage.setItem('sweepstakeDrawResults', JSON.stringify(sweepstakeData));
+        console.log("Draw results saved to localStorage");
+    } catch (err) {
+        console.error("Failed to save draw results:", err);
+    }
+
+    // Try to save to file
+    saveDrawResultsToFile();
+
+    renderApp();
+
+    // Show completion message
+    const completeMsg = document.getElementById('draw-complete-message');
+    if (completeMsg) {
+        completeMsg.style.display = 'block';
+    }
+}
+
+/**
+ * Formats draw results as text content
+ */
+function formatDrawResultsAsText() {
+    const timestamp = new Date().toLocaleString();
+    let content = "WORLD CUP 2026 SWEEPSTAKE DRAW RESULTS\n";
+    content += "====================================\n\n";
+    content += `Draw Date & Time: ${timestamp}\n\n`;
+    
+    content += "TEAM ASSIGNMENTS:\n";
+    content += "-----------------\n\n";
+    
+    sweepstakeData.forEach((player, index) => {
+        content += `${index + 1}. ${player.player}\n`;
+        content += `   - Pot 1 Team: ${player.teams[0]}\n`;
+        content += `   - Pot 2 Team: ${player.teams[1]}\n\n`;
+    });
+    
+    return content;
+}
+
+/**
+ * Saves draw results to a JSON file in the repo
+ */
+async function saveDrawResultsToFile() {
+    try {
+        const drawResults = {
+            timestamp: new Date().toISOString(),
+            results: sweepstakeData.map(player => ({
+                player: player.player,
+                teams: player.teams,
+                status: player.status
+            }))
+        };
+
+        // Try to save via a backend endpoint (optional)
+        // If you set up a backend, it would handle saving the file
+        const response = await fetch('save-draw-results', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(drawResults)
+        });
+
+        if (response.ok) {
+            console.log("Draw results saved to server");
+            return true;
+        }
+    } catch (err) {
+        // If no backend endpoint, continue gracefully
+        console.log("No backend endpoint available, results saved to localStorage only");
+    }
+    return false;
+}
+
+/**
+ * Downloads draw results as a text file
+ */
+function downloadDrawResults() {
+    const content = formatDrawResultsAsText();
+    const element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+    element.setAttribute('download', 'draw_results_' + new Date().toISOString().split('T')[0] + '.txt');
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+}
+
+/**
+ * Loads draw results from localStorage
+ */
+function loadDrawResults() {
+    try {
+        const saved = localStorage.getItem('sweepstakeDrawResults');
+        if (saved) {
+            const loadedData = JSON.parse(saved);
+            sweepstakeData.forEach((player, index) => {
+                if (loadedData[index]) {
+                    player.teams = loadedData[index].teams;
+                }
+            });
+            console.log("Draw results loaded from localStorage");
+            return true;
+        }
+    } catch (err) {
+        console.error("Failed to load draw results:", err);
+    }
+    return false;
+}
+
+/**
+ * Initiates the sweepstake draw
+ */
+async function startDraw() {
+    const startBtn = document.getElementById('start-draw-btn');
+    const statusDiv = document.getElementById('draw-status');
+    const passwordInput = document.getElementById('draw-password');
+    
+    if (!startBtn || drawState.drawInProgress) return;
+
+    // Check password
+    if (!passwordInput || passwordInput.value !== drawState.drawPassword) {
+        alert('❌ Incorrect password. Please enter the correct password to start the draw.');
+        if (passwordInput) {
+            passwordInput.focus();
+            passwordInput.value = '';
+        }
+        return;
+    }
+
+    // Clear any previous draw results
+    try {
+        localStorage.removeItem('sweepstakeDrawResults');
+        console.log("Previous draw results cleared");
+    } catch (err) {
+        console.error("Failed to clear previous results:", err);
+    }
+
+    // Initialize draw state
+    drawState.isDrawing = true;
+    drawState.drawInProgress = true;
+    drawState.currentPlayerIndex = 0;
+    drawState.currentPot = 1;
+
+    // Reset teams to empty
+    sweepstakeData.forEach(player => {
+        player.teams = ["TBD", "TBD"];
+    });
+
+    // Divide teams into pots
+    const potsSuccessful = dividePots();
+    if (!potsSuccessful) {
+        drawState.isDrawing = false;
+        drawState.drawInProgress = false;
+        startBtn.disabled = false;
+        startBtn.textContent = '🎲 Start The Draw';
+        return;
+    }
+
+    // Hide password input and show status
+    if (passwordInput) {
+        passwordInput.disabled = true;
+        passwordInput.style.display = 'none';
+    }
+    startBtn.disabled = true;
+    startBtn.textContent = '🎲 Drawing...';
+    if (statusDiv) {
+        statusDiv.style.display = 'block';
+    }
+
+    // Hide completion message if visible
+    const completeMsg = document.getElementById('draw-complete-message');
+    if (completeMsg) {
+        completeMsg.style.display = 'none';
+    }
+
+    // Update status
+    updateDrawStatus();
+    renderApp();
+
+    // Wait a moment then start drawing
+    await new Promise(resolve => setTimeout(resolve, 500));
+    await drawOneTeam();
+}
+
+window.onload = function() {
+    initApp();
+    // Try to load previously saved draw results
+    const hasDrawn = loadDrawResults();
+    if (hasDrawn) {
+        // Check if all players have teams (draw is complete)
+        const drawComplete = sweepstakeData.every(p => p.teams && p.teams[0] !== "TBD" && p.teams[1] !== "TBD");
+        if (drawComplete) {
+            // Update UI to hide password input if draw exists
+            const passwordInput = document.getElementById('draw-password');
+            const startBtn = document.getElementById('start-draw-btn');
+            const completeMsg = document.getElementById('draw-complete-message');
+            if (passwordInput && startBtn) {
+                passwordInput.style.display = 'none';
+                startBtn.style.display = 'none';
+            }
+            if (completeMsg) {
+                completeMsg.style.display = 'block';
+            }
+        }
+    }
+};

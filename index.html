@@ -22,6 +22,26 @@
         <section id="sweepstake" class="tab-content active-content">
             <h2>Participants & Assigned Teams</h2>
             <p class="instruction-text">Click on a country to view its squad and specific fixture schedule.</p>
+            <div class="draw-controls">
+                <div class="password-input-group">
+                    <input type="password" id="draw-password" class="draw-password-input" placeholder="Enter password to start draw">
+                    <button id="start-draw-btn" class="draw-button" onclick="startDraw()">🎲 Start The Draw</button>
+                </div>
+            </div>
+            <div id="draw-complete-message" style="display: none; text-align: center; margin: 20px 0;">
+                <div style="background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%); border: 2px solid #2e7d32; border-radius: 10px; padding: 20px; color: #1b5e20;">
+                    <h3 style="margin-top: 0;">✓ Draw Complete!</h3>
+                    <p>Results have been saved.</p>
+                    <button id="download-results-btn" class="draw-button" style="background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);" onclick="downloadDrawResults()">📥 Download Results</button>
+                </div>
+            </div>
+            <div id="draw-status" class="draw-status" style="display: none;">
+                <div class="draw-status-content">
+                    <div id="current-player">Current Player: <strong></strong></div>
+                    <div id="current-pot">Drawing from: <strong></strong></div>
+                    <div id="teams-remaining">Teams Remaining - Pot 1: <span id="pot1-count">0</span> | Pot 2: <span id="pot2-count">0</span></div>
+                </div>
+            </div>
             <div id="sweepstake-list"></div>
 
             <div class="bracket-section">
