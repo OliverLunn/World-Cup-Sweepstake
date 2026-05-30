@@ -231,6 +231,31 @@ h2 {
     color: #2e7d32;
 }
 
+.golden-boot {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px;
+    background: linear-gradient(135deg, #b9c0c0 0%, #d1d0d0 100%);
+    border-radius: 6px;
+    margin: 8px 0;
+}
+
+.boot-label {
+    font-size: 11px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+.boot-prediction {
+    font-size: 12px;
+    color: #333;
+    text-align: center;
+    font-weight: 600;
+    word-wrap: break-word;
+}
+
 /* Fixture Layouts */
 /* Fixture Date Groups */
 .fixture-date-group {
@@ -801,6 +826,8 @@ footer {
 .draw-password-input::placeholder {
     color: #999;
 }
+
+.draw-section {
     background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
     border: 2px solid #1976d2;
     border-radius: 10px;

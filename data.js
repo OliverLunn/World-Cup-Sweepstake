@@ -164,24 +164,24 @@ const teamCodes = {
 // ==========================================
 // Each player has an array of 3 teams they picked in the sweepstake. We will update these with actual team names once we fetch the data from the API
 const sweepstakeData = [
-    { player: "Tom Antolin", teams: ["TBD","TBD"], status: "In Tournament" },
-    { player: "Anna Dalmasso", teams: ["TBD","TBD"], status: "In Tournament" },
-    { player: "Jake Dorman", teams: ["TBD","TBD"], status: "In Tournament" },
-    { player: "Jacob Campbell", teams: ["TBD","TBD"], status: "In Tournament" },
-    { player: "Breagh Macpherson", teams: ["TBD","TBD"], status: "In Tournament" },
-    { player: "Dan Ford", teams: ["TBD","TBD"], status: "In Tournament" },
-    { player: "Dan Ferring", teams: ["TBD","TBD"], status: "In Tournament" },
-    { player: "Rayff De Souza", teams: ["TBD","TBD"], status: "In Tournament" },
-    { player: "Greg Humphrey-Evans", teams: ["TBD","TBD"], status: "In Tournament" },
-    { player: "Oliver Lunn", teams: ["TBD","TBD"], status: "In Tournament" },
-    { player: "Tyler Rolfe", teams: ["TBD","TBD"], status: "In Tournament" },
-    { player: "Adela Fernandez", teams: ["TBD","TBD"], status: "In Tournament" },
-    { player: "Guillaume Hewitt", teams: ["TBD","TBD"], status: "In Tournament" },
-    { player: "Martin Valincius", teams: ["TBD","TBD"], status: "In Tournament" },
-    { player: "Sameer Jin", teams: ["TBD","TBD"], status: "In Tournament" },
-    { player: "Hattie O'Brien", teams: ["TBD","TBD"], status: "In Tournament" },
-    { player: "Anna Beer", teams: ["TBD","TBD"], status: "In Tournament" },
-    { player: "Ewan Kennett", teams: ["TBD","TBD"], status: "In Tournament" }
+    { player: "Tom Antolin", teams: ["TBD","TBD"], goldenBootPrediction: "TBD", status: "In Tournament" },
+    { player: "Anna Dalmasso", teams: ["TBD","TBD"], goldenBootPrediction: "Lamine Yamal", status: "In Tournament" },
+    { player: "Jake Dorman", teams: ["TBD","TBD"], goldenBootPrediction: "Florian Wirtz", status: "In Tournament" },
+    { player: "Jacob Campbell", teams: ["TBD","TBD"], goldenBootPrediction: "Desire Doue", status: "In Tournament" },
+    { player: "Breagh Macpherson", teams: ["TBD","TBD"], goldenBootPrediction: "Scott McTominay", status: "In Tournament" },
+    { player: "Dan Ford", teams: ["TBD","TBD"], goldenBootPrediction: "Florian Wirtz", status: "In Tournament" },
+    { player: "Dan Ferring", teams: ["TBD","TBD"], goldenBootPrediction: "Jordan Pickford", status: "In Tournament" },
+    { player: "Rayff De Souza", teams: ["TBD","TBD"], goldenBootPrediction: "Erling Haaland", status: "In Tournament" },
+    { player: "Greg Humphrey-Evans", teams: ["TBD","TBD"], goldenBootPrediction: "Raphinha", status: "In Tournament" },
+    { player: "Oliver Lunn", teams: ["TBD","TBD"], goldenBootPrediction: "Harry Kane", status: "In Tournament" },
+    { player: "Tyler Rolfe", teams: ["TBD","TBD"], goldenBootPrediction: "Mikel Oyarzabal", status: "In Tournament" },
+    { player: "Adela Fernandez", teams: ["TBD","TBD"], goldenBootPrediction: "Lamine Yamal", status: "In Tournament" },
+    { player: "Guillaume Hewitt", teams: ["TBD","TBD"], goldenBootPrediction: "Kylian Mbappé", status: "In Tournament" },
+    { player: "Martin Valincius", teams: ["TBD","TBD"], goldenBootPrediction: "Cristiano Ronaldo", status: "In Tournament" },
+    { player: "Sameer Jin", teams: ["TBD","TBD"], goldenBootPrediction: "TBD", status: "In Tournament" },
+    { player: "Hattie O'Brien", teams: ["TBD","TBD"], goldenBootPrediction: "Kylian Mbappé", status: "In Tournament" },
+    { player: "Anna Beer", teams: ["TBD","TBD"], goldenBootPrediction: "Sander Berge", status: "In Tournament" },
+    { player: "Ewan Kennett", teams: ["TBD","TBD"], goldenBootPrediction: "TBD", status: "In Tournament" }
 ];
 
 // ==========================================

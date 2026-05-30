@@ -102,6 +102,10 @@ function renderApp() {
                         </div>
                     `).join('')}
                 </div>
+                <div class="golden-boot">
+                    <span class="boot-label"></span>
+                    <span class="boot-prediction">${p.goldenBootPrediction}</span>
+                </div>
                 <div class="player-status">${p.status}</div>
             </div>
         `).join('');
@@ -681,13 +685,29 @@ function updateMainFromPopup(completedDrawData) {
  * Fallback handler allowing manual result extraction if needed
  */
 function downloadDrawResults() {
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(sweepstakeData, null, 2));
-    const dlAnchor = document.createElement('a');
-    dlAnchor.setAttribute("href", dataStr);
-    dlAnchor.setAttribute("download", "draw-results.json");
-    document.body.appendChild(dlAnchor);
-    dlAnchor.click();
-    dlAnchor.remove();
+    // Create simple text format for WhatsApp
+    let textContent = ``;
+    
+    sweepstakeData.forEach((participant) => {
+        textContent += `${participant.player}\n`;
+        
+        // Add assigned teams
+        if (participant.teams && participant.teams.length > 0) {
+            participant.teams.forEach(team => {
+                textContent += `${team}\n`;
+            });
+        }
+        
+        textContent += `\n`;
+    });
+    
+    // Download as text file
+    const element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textContent));
+    element.setAttribute('download', `WorldCup2026_Draw_${new Date().toISOString().split('T')[0]}.txt`);
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
 }
 
 // =========================================================================
