@@ -3,7 +3,7 @@ WORLD CUP 2026 SWEEPSTAKE: HOW THE DRAW WORKS
 
     To ensure fairness and transparency, our sweepstake uses a split-pot randomization system. There is no bias towards drawing first or last. The teams are 
     split into two pots (pot 1 and pot 2). Pot 1 contains the 18 top ranked teams in the world (18 players in the sweepstake) and pot 2 contains the rest of the teams in the tournament.
-    Everyone will draw 1 team from each of the pots.
+    Everyone will draw 2 teams in total: 1 team from Pot 1 and 1 team from Pot 2.
 
 
 How the draw works:
@@ -35,10 +35,12 @@ Execution of the draw:
         The algorithm produces an unbiased permutation: every permutation is equally likely. 
 
     B. Allocation:
-        The algorithm moves down the list of our 18 participants one by one. For each person, it draws 2 teams:
+        The algorithm moves down the list of our participants one by one. For each person, it draws 2 teams:
 
             Step 1: It takes the first remaining team from Pot 1 (shuffled) and assigns it to the participant.
-            Step 2: It takes the first remaining team from the Pot 2 (shuffled) and assigns it to the same participant.
+            Step 2: It takes the first remaining team from Pot 2 (shuffled) and assigns it to the participant.
+
+        Note: If either pot runs out, the algorithm will attempt to draw from the other pot as a fallback. If there are still fewer teams than slots, remaining assignments will be left as "TBD" and can be filled manually.
 
     C. No card replacement:
         Once a team is drawn from either pot, its removed from the pot.No teams can be drawn twice.

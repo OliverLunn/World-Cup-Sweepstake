@@ -102,10 +102,7 @@ function renderApp() {
                         </div>
                     `).join('')}
                 </div>
-                <div class="golden-boot">
-                    <span class="boot-label"></span>
-                    <span class="boot-prediction">${p.goldenBootPrediction}</span>
-                </div>
+                
                 <div class="player-status">${p.status}</div>
             </div>
         `).join('');
@@ -545,6 +542,8 @@ async function startDraw() {
                             <div id="pot2-slot-container"></div>
                         </div>
 
+                        
+
                     </div>
                 </div>
             </div>
@@ -582,12 +581,12 @@ async function startDraw() {
 
             const pot1Teams = ["France", "Spain", "Argentina", "England", "Portugal", "Brazil", 
             "Netherlands", "Morocco", "Belgium", "Germany", "Croatia", "Colombia", "Senegal", 
-            "Mexico", "USA", "Uruguay", "Japan", "Switzerland"];
+            "Mexico", "USA", "Uruguay", "Japan"];
             
             const pot2Teams = ["Canada", "Norway", "Scotland", "Austria", "Bosnia & Herzegovina", 
             "Sweden", "Turkey", "Czechia", "Algeria", "Cape Verde", "DR Congo", "Egypt", "Ghana", 
             "Ivory Coast", "South Africa", "Australia", "Iran", "Iraq", "Jordan", "Qatar", "Saudi Arabia", 
-            "South Korea", "Uzbekistan", "Ecuador", "Paraguay", "Panama", "Haiti", "Curaçao", "New Zealand"];
+            "South Korea", "Uzbekistan", "Ecuador", "Paraguay", "Panama", "Haiti", "Curaçao", "New Zealand", "Switzerland"];
 
             let pot1 = shuffle(pot1Teams);
             let pot2 = shuffle(pot2Teams);
@@ -606,10 +605,15 @@ async function startDraw() {
                 drawTicker.textContent = "Drawing from Pot 1...";
                 await new Promise(r => setTimeout(r, 800));
                 
-                // 1. Core Pot 1 Reveal Injection
+                // 1. Core Pot 1 Reveal Injection (with fallback if pot1 empty)
                 let t1 = pot1.shift();
-                p.teams[0] = t1;
-                pot1Container.innerHTML = '<div class="team-item">' + getFlag(t1) + '<span>' + t1 + '</span></div>';
+                if (!t1) {
+                    // Try fallback from pot2
+                    t1 = pot2.shift();
+                }
+                const t1Val = t1 || 'TBD';
+                p.teams[0] = t1Val;
+                pot1Container.innerHTML = '<div class="team-item">' + getFlag(t1Val) + '<span>' + t1Val + '</span></div>';
                 
                 // DELAY 2 SECONDS BEFORE POT 2 ACCORDING TO TIMING CONFIGS
                 drawTicker.textContent = "Pot 1 assigned. Drawing from Pot 2...";
@@ -618,8 +622,13 @@ async function startDraw() {
                 // 2. Core Pot 2 Reveal Injection
                 drawTicker.textContent = "Drawing from Pot 2...";
                 let t2 = pot2.shift();
-                p.teams[1] = t2;
-                pot2Container.innerHTML = '<div class="team-item">' + getFlag(t2) + '<span>' + t2 + '</span></div>';
+                if (!t2) {
+                    // Fallback to pot1 if pot2 exhausted
+                    t2 = pot1.shift();
+                }
+                const t2Val = t2 || 'TBD';
+                p.teams[1] = t2Val;
+                pot2Container.innerHTML = '<div class="team-item">' + getFlag(t2Val) + '<span>' + t2Val + '</span></div>';
 
                 // DELAY 5 SECONDS BETWEEN ROTATING PLAYERS UNLESS WE ARE ON THE LAST ITEM
                 if (i < currentPlayers.length - 1) {
