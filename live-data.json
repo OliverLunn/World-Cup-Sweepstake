@@ -13,8 +13,8 @@
       "utcDate": "2026-06-12T02:00:00Z",
       "time": "03:00",
       "match": "South Korea vs Czechia",
-      "score": "0 - 0",
-      "status": "Live"
+      "score": "2 - 1",
+      "status": "Finished"
     },
     {
       "date": "Jun 12",
@@ -844,14 +844,14 @@
       {
         "team": "South Korea",
         "pld": 1,
-        "gd": 0,
-        "pts": 1
+        "gd": 1,
+        "pts": 3
       },
       {
         "team": "Czechia",
         "pld": 1,
-        "gd": 0,
-        "pts": 1
+        "gd": -1,
+        "pts": 0
       },
       {
         "team": "South Africa",
@@ -1159,7 +1159,25 @@
       "goals": 1,
       "team": "Mexico",
       "photo": null
+    },
+    {
+      "name": "Ladislav Krejčí",
+      "goals": 1,
+      "team": "Czechia",
+      "photo": null
+    },
+    {
+      "name": "In-beom Hwang",
+      "goals": 1,
+      "team": "South Korea",
+      "photo": null
+    },
+    {
+      "name": "Hyun-Gyu Oh",
+      "goals": 1,
+      "team": "South Korea",
+      "photo": null
     }
   ],
-  "lastUpdated": "Fri, 12 Jun 2026 02:31:34 GMT"
+  "lastUpdated": "Fri, 12 Jun 2026 14:33:09 GMT"
 }
