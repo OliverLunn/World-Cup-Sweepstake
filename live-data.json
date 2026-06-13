@@ -29,8 +29,8 @@
       "utcDate": "2026-06-13T01:00:00Z",
       "time": "02:00",
       "match": "United States vs Paraguay",
-      "score": "3 - 0",
-      "status": "Scheduled"
+      "score": "4 - 1",
+      "status": "Finished"
     },
     {
       "date": "Jun 13",
@@ -1195,7 +1195,19 @@
       "goals": 1,
       "team": "Canada",
       "photo": null
+    },
+    {
+      "name": "Mauricio",
+      "goals": 1,
+      "team": "Paraguay",
+      "photo": null
+    },
+    {
+      "name": "Gio Reyna",
+      "goals": 1,
+      "team": "United States",
+      "photo": null
     }
   ],
-  "lastUpdated": "Sat, 13 Jun 2026 02:12:27 GMT"
+  "lastUpdated": "Sat, 13 Jun 2026 13:23:32 GMT"
 }
