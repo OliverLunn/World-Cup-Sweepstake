@@ -37,24 +37,24 @@
       "utcDate": "2026-06-13T19:00:00Z",
       "time": "20:00",
       "match": "Qatar vs Switzerland",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "1 - 1",
+      "status": "Finished"
     },
     {
       "date": "Jun 13",
       "utcDate": "2026-06-13T22:00:00Z",
       "time": "23:00",
       "match": "Brazil vs Morocco",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "1 - 1",
+      "status": "Finished"
     },
     {
       "date": "Jun 14",
       "utcDate": "2026-06-14T01:00:00Z",
       "time": "02:00",
       "match": "Haiti vs Scotland",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "0 - 1",
+      "status": "Live"
     },
     {
       "date": "Jun 14",
@@ -875,40 +875,40 @@
       },
       {
         "team": "Qatar",
-        "pld": 0,
+        "pld": 1,
         "gd": 0,
-        "pts": 0
+        "pts": 1
       },
       {
         "team": "Switzerland",
-        "pld": 0,
+        "pld": 1,
         "gd": 0,
-        "pts": 0
+        "pts": 1
       }
     ],
     "Group C": [
       {
-        "team": "Brazil",
-        "pld": 0,
-        "gd": 0,
-        "pts": 0
+        "team": "Scotland",
+        "pld": 1,
+        "gd": 1,
+        "pts": 3
       },
       {
-        "team": "Haiti",
-        "pld": 0,
+        "team": "Brazil",
+        "pld": 1,
         "gd": 0,
-        "pts": 0
+        "pts": 1
       },
       {
         "team": "Morocco",
-        "pld": 0,
+        "pld": 1,
         "gd": 0,
-        "pts": 0
+        "pts": 1
       },
       {
-        "team": "Scotland",
-        "pld": 0,
-        "gd": 0,
+        "team": "Haiti",
+        "pld": 1,
+        "gd": -1,
         "pts": 0
       }
     ],
@@ -1209,5 +1209,5 @@
       "photo": null
     }
   ],
-  "lastUpdated": "Sat, 13 Jun 2026 13:23:32 GMT"
+  "lastUpdated": "Sun, 14 Jun 2026 02:35:45 GMT"
 }
