@@ -126,7 +126,7 @@
       "time": "02:00",
       "match": "Iran vs New Zealand",
       "score": "2 - 2",
-      "status": "Live"
+      "status": "Finished"
     },
     {
       "date": "Jun 16",
@@ -994,8 +994,14 @@
       {
         "team": "New Zealand",
         "pld": 1,
-        "gd": 1,
-        "pts": 3
+        "gd": 0,
+        "pts": 1
+      },
+      {
+        "team": "Iran",
+        "pld": 1,
+        "gd": 0,
+        "pts": 1
       },
       {
         "team": "Belgium",
@@ -1008,23 +1014,17 @@
         "pld": 1,
         "gd": 0,
         "pts": 1
-      },
-      {
-        "team": "Iran",
-        "pld": 1,
-        "gd": -1,
-        "pts": 0
       }
     ],
     "Group H": [
       {
-        "team": "Saudi Arabia",
+        "team": "Uruguay",
         "pld": 1,
         "gd": 0,
         "pts": 1
       },
       {
-        "team": "Uruguay",
+        "team": "Saudi Arabia",
         "pld": 1,
         "gd": 0,
         "pts": 1
@@ -1209,5 +1209,5 @@
       "photo": null
     }
   ],
-  "lastUpdated": "Tue, 16 Jun 2026 02:43:06 GMT"
+  "lastUpdated": "Tue, 16 Jun 2026 16:21:41 GMT"
 }
