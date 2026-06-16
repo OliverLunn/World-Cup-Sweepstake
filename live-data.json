@@ -102,31 +102,31 @@
       "time": "17:00",
       "match": "Spain vs Cape Verde Islands",
       "score": "0 - 0",
-      "status": "Scheduled"
+      "status": "Finished"
     },
     {
       "date": "Jun 15",
       "utcDate": "2026-06-15T19:00:00Z",
       "time": "20:00",
       "match": "Belgium vs Egypt",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "1 - 1",
+      "status": "Finished"
     },
     {
       "date": "Jun 15",
       "utcDate": "2026-06-15T22:00:00Z",
       "time": "23:00",
       "match": "Saudi Arabia vs Uruguay",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "1 - 1",
+      "status": "Finished"
     },
     {
       "date": "Jun 16",
       "utcDate": "2026-06-16T01:00:00Z",
       "time": "02:00",
       "match": "Iran vs New Zealand",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "2 - 2",
+      "status": "Live"
     },
     {
       "date": "Jun 16",
@@ -992,33 +992,39 @@
     ],
     "Group G": [
       {
-        "team": "Egypt",
-        "pld": 0,
-        "gd": 0,
-        "pts": 0
+        "team": "New Zealand",
+        "pld": 1,
+        "gd": 1,
+        "pts": 3
       },
       {
         "team": "Belgium",
-        "pld": 0,
+        "pld": 1,
         "gd": 0,
-        "pts": 0
+        "pts": 1
+      },
+      {
+        "team": "Egypt",
+        "pld": 1,
+        "gd": 0,
+        "pts": 1
       },
       {
         "team": "Iran",
-        "pld": 0,
-        "gd": 0,
-        "pts": 0
-      },
-      {
-        "team": "New Zealand",
-        "pld": 0,
-        "gd": 0,
+        "pld": 1,
+        "gd": -1,
         "pts": 0
       }
     ],
     "Group H": [
       {
-        "team": "Cape Verde Islands",
+        "team": "Saudi Arabia",
+        "pld": 1,
+        "gd": 0,
+        "pts": 1
+      },
+      {
+        "team": "Uruguay",
         "pld": 1,
         "gd": 0,
         "pts": 1
@@ -1030,16 +1036,10 @@
         "pts": 1
       },
       {
-        "team": "Saudi Arabia",
-        "pld": 0,
+        "team": "Cape Verde Islands",
+        "pld": 1,
         "gd": 0,
-        "pts": 0
-      },
-      {
-        "team": "Uruguay",
-        "pld": 0,
-        "gd": 0,
-        "pts": 0
+        "pts": 1
       }
     ],
     "Group I": [
@@ -1167,6 +1167,12 @@
       "photo": null
     },
     {
+      "name": "Elijah Just",
+      "goals": 2,
+      "team": "New Zealand",
+      "photo": null
+    },
+    {
       "name": "Julián Quiñones",
       "goals": 1,
       "team": "Mexico",
@@ -1201,13 +1207,7 @@
       "goals": 1,
       "team": "Bosnia-Herzegovina",
       "photo": null
-    },
-    {
-      "name": "Cyle Larin",
-      "goals": 1,
-      "team": "Canada",
-      "photo": null
     }
   ],
-  "lastUpdated": "Mon, 15 Jun 2026 16:55:04 GMT"
+  "lastUpdated": "Tue, 16 Jun 2026 02:43:06 GMT"
 }
