@@ -165,32 +165,32 @@
       "utcDate": "2026-06-17T17:00:00Z",
       "time": "18:00",
       "match": "Portugal vs Congo DR",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "1 - 1",
+      "status": "Finished"
     },
     {
       "date": "Jun 17",
       "utcDate": "2026-06-17T20:00:00Z",
       "time": "21:00",
       "match": "England vs Croatia",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "4 - 2",
+      "status": "Finished"
     },
     {
       "date": "Jun 17",
       "utcDate": "2026-06-17T23:00:00Z",
       "time": "00:00",
       "match": "Ghana vs Panama",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "1 - 0",
+      "status": "Live"
     },
     {
       "date": "Jun 18",
       "utcDate": "2026-06-18T02:00:00Z",
       "time": "03:00",
       "match": "Uzbekistan vs Colombia",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "0 - 0",
+      "status": "Live"
     },
     {
       "date": "Jun 18",
@@ -1097,52 +1097,52 @@
     "Group K": [
       {
         "team": "Congo DR",
-        "pld": 0,
+        "pld": 1,
         "gd": 0,
-        "pts": 0
-      },
-      {
-        "team": "Colombia",
-        "pld": 0,
-        "gd": 0,
-        "pts": 0
+        "pts": 1
       },
       {
         "team": "Portugal",
-        "pld": 0,
+        "pld": 1,
         "gd": 0,
-        "pts": 0
+        "pts": 1
+      },
+      {
+        "team": "Colombia",
+        "pld": 1,
+        "gd": 0,
+        "pts": 1
       },
       {
         "team": "Uzbekistan",
-        "pld": 0,
+        "pld": 1,
         "gd": 0,
-        "pts": 0
+        "pts": 1
       }
     ],
     "Group L": [
       {
         "team": "England",
-        "pld": 0,
-        "gd": 0,
-        "pts": 0
+        "pld": 1,
+        "gd": 2,
+        "pts": 3
       },
       {
         "team": "Ghana",
-        "pld": 0,
-        "gd": 0,
+        "pld": 1,
+        "gd": 1,
+        "pts": 3
+      },
+      {
+        "team": "Panama",
+        "pld": 1,
+        "gd": -1,
         "pts": 0
       },
       {
         "team": "Croatia",
-        "pld": 0,
-        "gd": 0,
-        "pts": 0
-      },
-      {
-        "team": "Panama",
-        "pld": 0,
-        "gd": 0,
+        "pld": 1,
+        "gd": -2,
         "pts": 0
       }
     ]
@@ -1191,6 +1191,12 @@
       "photo": null
     },
     {
+      "name": "Harry Kane",
+      "goals": 2,
+      "team": "England",
+      "photo": null
+    },
+    {
       "name": "Julián Quiñones",
       "goals": 1,
       "team": "Mexico",
@@ -1201,13 +1207,7 @@
       "goals": 1,
       "team": "Mexico",
       "photo": null
-    },
-    {
-      "name": "Ladislav Krejčí",
-      "goals": 1,
-      "team": "Czechia",
-      "photo": null
     }
   ],
-  "lastUpdated": "Wed, 17 Jun 2026 14:49:23 GMT"
+  "lastUpdated": "Thu, 18 Jun 2026 02:37:01 GMT"
 }
