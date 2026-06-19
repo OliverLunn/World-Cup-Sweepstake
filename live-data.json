@@ -222,7 +222,7 @@
       "time": "02:00",
       "match": "Mexico vs South Korea",
       "score": "1 - 0",
-      "status": "Live"
+      "status": "Finished"
     },
     {
       "date": "Jun 19",
@@ -1209,5 +1209,5 @@
       "photo": null
     }
   ],
-  "lastUpdated": "Fri, 19 Jun 2026 02:53:18 GMT"
+  "lastUpdated": "Fri, 19 Jun 2026 14:41:10 GMT"
 }
