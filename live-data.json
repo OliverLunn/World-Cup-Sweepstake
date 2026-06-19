@@ -197,32 +197,32 @@
       "utcDate": "2026-06-18T16:00:00Z",
       "time": "17:00",
       "match": "Czechia vs South Africa",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "1 - 1",
+      "status": "Finished"
     },
     {
       "date": "Jun 18",
       "utcDate": "2026-06-18T19:00:00Z",
       "time": "20:00",
       "match": "Switzerland vs Bosnia-Herzegovina",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "4 - 1",
+      "status": "Finished"
     },
     {
       "date": "Jun 18",
       "utcDate": "2026-06-18T22:00:00Z",
       "time": "23:00",
       "match": "Canada vs Qatar",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "6 - 0",
+      "status": "Finished"
     },
     {
       "date": "Jun 19",
       "utcDate": "2026-06-19T01:00:00Z",
       "time": "02:00",
       "match": "Mexico vs South Korea",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "1 - 0",
+      "status": "Live"
     },
     {
       "date": "Jun 19",
@@ -837,52 +837,52 @@
     "Group A": [
       {
         "team": "Mexico",
-        "pld": 1,
-        "gd": 2,
-        "pts": 3
+        "pld": 2,
+        "gd": 3,
+        "pts": 6
       },
       {
         "team": "South Korea",
-        "pld": 1,
-        "gd": 1,
+        "pld": 2,
+        "gd": 0,
         "pts": 3
       },
       {
         "team": "Czechia",
-        "pld": 1,
+        "pld": 2,
         "gd": -1,
-        "pts": 0
+        "pts": 1
       },
       {
         "team": "South Africa",
-        "pld": 1,
+        "pld": 2,
         "gd": -2,
-        "pts": 0
+        "pts": 1
       }
     ],
     "Group B": [
       {
-        "team": "Switzerland",
-        "pld": 1,
-        "gd": 0,
-        "pts": 1
+        "team": "Canada",
+        "pld": 2,
+        "gd": 6,
+        "pts": 4
       },
       {
-        "team": "Canada",
-        "pld": 1,
-        "gd": 0,
+        "team": "Switzerland",
+        "pld": 2,
+        "gd": 3,
+        "pts": 4
+      },
+      {
+        "team": "Bosnia-Herzegovina",
+        "pld": 2,
+        "gd": -3,
         "pts": 1
       },
       {
         "team": "Qatar",
-        "pld": 1,
-        "gd": 0,
-        "pts": 1
-      },
-      {
-        "team": "Bosnia-Herzegovina",
-        "pld": 1,
-        "gd": 0,
+        "pld": 2,
+        "gd": -6,
         "pts": 1
       }
     ],
@@ -1155,6 +1155,18 @@
       "photo": null
     },
     {
+      "name": "Jonathan David",
+      "goals": 3,
+      "team": "Canada",
+      "photo": null
+    },
+    {
+      "name": "Cyle Larin",
+      "goals": 2,
+      "team": "Canada",
+      "photo": null
+    },
+    {
       "name": "Folarin Balogun",
       "goals": 2,
       "team": "United States",
@@ -1195,19 +1207,7 @@
       "goals": 2,
       "team": "England",
       "photo": null
-    },
-    {
-      "name": "Julián Quiñones",
-      "goals": 1,
-      "team": "Mexico",
-      "photo": null
-    },
-    {
-      "name": "Raúl Jiménez",
-      "goals": 1,
-      "team": "Mexico",
-      "photo": null
     }
   ],
-  "lastUpdated": "Thu, 18 Jun 2026 14:44:58 GMT"
+  "lastUpdated": "Fri, 19 Jun 2026 02:53:18 GMT"
 }
