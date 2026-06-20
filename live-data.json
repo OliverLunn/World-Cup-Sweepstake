@@ -246,15 +246,15 @@
       "time": "01:30",
       "match": "Brazil vs Haiti",
       "score": "3 - 0",
-      "status": "Live"
+      "status": "Finished"
     },
     {
       "date": "Jun 20",
       "utcDate": "2026-06-20T03:00:00Z",
       "time": "04:00",
       "match": "Turkey vs Paraguay",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "0 - 1",
+      "status": "Finished"
     },
     {
       "date": "Jun 20",
@@ -888,15 +888,15 @@
     ],
     "Group C": [
       {
-        "team": "Morocco",
-        "pld": 2,
-        "gd": 1,
-        "pts": 4
-      },
-      {
         "team": "Brazil",
         "pld": 2,
         "gd": 3,
+        "pts": 4
+      },
+      {
+        "team": "Morocco",
+        "pld": 2,
+        "gd": 1,
         "pts": 4
       },
       {
@@ -926,14 +926,14 @@
         "pts": 3
       },
       {
-        "team": "Turkey",
-        "pld": 1,
+        "team": "Paraguay",
+        "pld": 2,
         "gd": -2,
-        "pts": 0
+        "pts": 3
       },
       {
-        "team": "Paraguay",
-        "pld": 1,
+        "team": "Turkey",
+        "pld": 2,
         "gd": -3,
         "pts": 0
       }
@@ -1209,5 +1209,5 @@
       "photo": null
     }
   ],
-  "lastUpdated": "Sat, 20 Jun 2026 02:14:13 GMT"
+  "lastUpdated": "Sat, 20 Jun 2026 13:25:33 GMT"
 }
