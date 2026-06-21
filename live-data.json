@@ -261,24 +261,24 @@
       "utcDate": "2026-06-20T17:00:00Z",
       "time": "18:00",
       "match": "Netherlands vs Sweden",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "5 - 1",
+      "status": "Finished"
     },
     {
       "date": "Jun 20",
       "utcDate": "2026-06-20T20:00:00Z",
       "time": "21:00",
       "match": "Germany vs Ivory Coast",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "2 - 1",
+      "status": "Finished"
     },
     {
       "date": "Jun 21",
       "utcDate": "2026-06-21T00:00:00Z",
       "time": "01:00",
       "match": "Ecuador vs Curaçao",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "0 - 0",
+      "status": "Finished"
     },
     {
       "date": "Jun 21",
@@ -941,44 +941,44 @@
     "Group E": [
       {
         "team": "Germany",
-        "pld": 1,
-        "gd": 6,
-        "pts": 3
+        "pld": 2,
+        "gd": 7,
+        "pts": 6
       },
       {
         "team": "Ivory Coast",
-        "pld": 1,
-        "gd": 1,
+        "pld": 2,
+        "gd": 0,
         "pts": 3
       },
       {
         "team": "Ecuador",
-        "pld": 1,
+        "pld": 2,
         "gd": -1,
-        "pts": 0
+        "pts": 1
       },
       {
         "team": "Curaçao",
-        "pld": 1,
+        "pld": 2,
         "gd": -6,
-        "pts": 0
+        "pts": 1
       }
     ],
     "Group F": [
       {
-        "team": "Sweden",
-        "pld": 1,
+        "team": "Netherlands",
+        "pld": 2,
         "gd": 4,
+        "pts": 4
+      },
+      {
+        "team": "Sweden",
+        "pld": 2,
+        "gd": 0,
         "pts": 3
       },
       {
         "team": "Japan",
-        "pld": 1,
-        "gd": 0,
-        "pts": 1
-      },
-      {
-        "team": "Netherlands",
         "pld": 1,
         "gd": 0,
         "pts": 1
@@ -1149,6 +1149,12 @@
   },
   "scorersData": [
     {
+      "name": "Deniz Undav",
+      "goals": 3,
+      "team": "Germany",
+      "photo": null
+    },
+    {
       "name": "Lionel Messi",
       "goals": 3,
       "team": "Argentina",
@@ -1201,13 +1207,7 @@
       "goals": 2,
       "team": "New Zealand",
       "photo": null
-    },
-    {
-      "name": "Kylian Mbappé",
-      "goals": 2,
-      "team": "France",
-      "photo": null
     }
   ],
-  "lastUpdated": "Sat, 20 Jun 2026 13:25:33 GMT"
+  "lastUpdated": "Sun, 21 Jun 2026 02:39:04 GMT"
 }
