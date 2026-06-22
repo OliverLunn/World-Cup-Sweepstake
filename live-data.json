@@ -293,32 +293,32 @@
       "utcDate": "2026-06-21T16:00:00Z",
       "time": "17:00",
       "match": "Spain vs Saudi Arabia",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "4 - 0",
+      "status": "Finished"
     },
     {
       "date": "Jun 21",
       "utcDate": "2026-06-21T19:00:00Z",
       "time": "20:00",
       "match": "Belgium vs Iran",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "0 - 0",
+      "status": "Finished"
     },
     {
       "date": "Jun 21",
       "utcDate": "2026-06-21T22:00:00Z",
       "time": "23:00",
       "match": "Uruguay vs Cape Verde Islands",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "2 - 2",
+      "status": "Finished"
     },
     {
       "date": "Jun 22",
       "utcDate": "2026-06-22T01:00:00Z",
       "time": "02:00",
       "match": "New Zealand vs Egypt",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "1 - 2",
+      "status": "Live"
     },
     {
       "date": "Jun 22",
@@ -992,53 +992,53 @@
     ],
     "Group G": [
       {
-        "team": "New Zealand",
-        "pld": 1,
-        "gd": 0,
-        "pts": 1
+        "team": "Egypt",
+        "pld": 2,
+        "gd": 1,
+        "pts": 4
       },
       {
         "team": "Iran",
-        "pld": 1,
+        "pld": 2,
         "gd": 0,
-        "pts": 1
+        "pts": 2
       },
       {
         "team": "Belgium",
-        "pld": 1,
+        "pld": 2,
         "gd": 0,
-        "pts": 1
+        "pts": 2
       },
       {
-        "team": "Egypt",
-        "pld": 1,
-        "gd": 0,
+        "team": "New Zealand",
+        "pld": 2,
+        "gd": -1,
         "pts": 1
       }
     ],
     "Group H": [
       {
-        "team": "Uruguay",
-        "pld": 1,
-        "gd": 0,
-        "pts": 1
-      },
-      {
-        "team": "Saudi Arabia",
-        "pld": 1,
-        "gd": 0,
-        "pts": 1
-      },
-      {
         "team": "Spain",
-        "pld": 1,
+        "pld": 2,
+        "gd": 4,
+        "pts": 4
+      },
+      {
+        "team": "Uruguay",
+        "pld": 2,
         "gd": 0,
-        "pts": 1
+        "pts": 2
       },
       {
         "team": "Cape Verde Islands",
-        "pld": 1,
+        "pld": 2,
         "gd": 0,
+        "pts": 2
+      },
+      {
+        "team": "Saudi Arabia",
+        "pld": 2,
+        "gd": -4,
         "pts": 1
       }
     ],
@@ -1209,5 +1209,5 @@
       "photo": null
     }
   ],
-  "lastUpdated": "Sun, 21 Jun 2026 13:46:44 GMT"
+  "lastUpdated": "Mon, 22 Jun 2026 02:42:34 GMT"
 }
