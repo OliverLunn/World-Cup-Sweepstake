@@ -317,8 +317,8 @@
       "utcDate": "2026-06-22T01:00:00Z",
       "time": "02:00",
       "match": "New Zealand vs Egypt",
-      "score": "1 - 2",
-      "status": "Live"
+      "score": "1 - 3",
+      "status": "Finished"
     },
     {
       "date": "Jun 22",
@@ -994,7 +994,7 @@
       {
         "team": "Egypt",
         "pld": 2,
-        "gd": 1,
+        "gd": 2,
         "pts": 4
       },
       {
@@ -1012,7 +1012,7 @@
       {
         "team": "New Zealand",
         "pld": 2,
-        "gd": -1,
+        "gd": -2,
         "pts": 1
       }
     ],
@@ -1209,5 +1209,5 @@
       "photo": null
     }
   ],
-  "lastUpdated": "Mon, 22 Jun 2026 02:42:34 GMT"
+  "lastUpdated": "Mon, 22 Jun 2026 16:26:38 GMT"
 }
