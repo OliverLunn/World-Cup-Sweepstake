@@ -325,24 +325,24 @@
       "utcDate": "2026-06-22T17:00:00Z",
       "time": "18:00",
       "match": "Argentina vs Austria",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "2 - 0",
+      "status": "Finished"
     },
     {
       "date": "Jun 22",
       "utcDate": "2026-06-22T21:00:00Z",
       "time": "22:00",
       "match": "France vs Iraq",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "3 - 0",
+      "status": "Finished"
     },
     {
       "date": "Jun 23",
       "utcDate": "2026-06-23T00:00:00Z",
       "time": "01:00",
       "match": "Norway vs Senegal",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "3 - 2",
+      "status": "Finished"
     },
     {
       "date": "Jun 23",
@@ -596,7 +596,7 @@
       "date": "Jun 29",
       "utcDate": "2026-06-29T20:30:00Z",
       "time": "21:30",
-      "match": "null vs null",
+      "match": "Germany vs null",
       "score": "TBD",
       "status": "Scheduled"
     },
@@ -628,7 +628,7 @@
       "date": "Jul 1",
       "utcDate": "2026-07-01T01:00:00Z",
       "time": "02:00",
-      "match": "null vs null",
+      "match": "Mexico vs null",
       "score": "TBD",
       "status": "Scheduled"
     },
@@ -652,7 +652,7 @@
       "date": "Jul 2",
       "utcDate": "2026-07-02T00:00:00Z",
       "time": "01:00",
-      "match": "null vs null",
+      "match": "United States vs null",
       "score": "TBD",
       "status": "Scheduled"
     },
@@ -1044,41 +1044,41 @@
     ],
     "Group I": [
       {
-        "team": "Norway",
-        "pld": 1,
-        "gd": 3,
-        "pts": 3
+        "team": "France",
+        "pld": 2,
+        "gd": 5,
+        "pts": 6
       },
       {
-        "team": "France",
-        "pld": 1,
-        "gd": 2,
-        "pts": 3
+        "team": "Norway",
+        "pld": 2,
+        "gd": 4,
+        "pts": 6
       },
       {
         "team": "Senegal",
-        "pld": 1,
-        "gd": -2,
+        "pld": 2,
+        "gd": -3,
         "pts": 0
       },
       {
         "team": "Iraq",
-        "pld": 1,
-        "gd": -3,
+        "pld": 2,
+        "gd": -6,
         "pts": 0
       }
     ],
     "Group J": [
       {
         "team": "Argentina",
-        "pld": 1,
-        "gd": 3,
-        "pts": 3
+        "pld": 2,
+        "gd": 5,
+        "pts": 6
       },
       {
         "team": "Austria",
-        "pld": 1,
-        "gd": 2,
+        "pld": 2,
+        "gd": 0,
         "pts": 3
       },
       {
@@ -1149,15 +1149,27 @@
   },
   "scorersData": [
     {
-      "name": "Deniz Undav",
-      "goals": 3,
-      "team": "Germany",
+      "name": "Lionel Messi",
+      "goals": 5,
+      "team": "Argentina",
       "photo": null
     },
     {
-      "name": "Lionel Messi",
+      "name": "Kylian Mbappé",
+      "goals": 4,
+      "team": "France",
+      "photo": null
+    },
+    {
+      "name": "Erling Haaland",
+      "goals": 4,
+      "team": "Norway",
+      "photo": null
+    },
+    {
+      "name": "Deniz Undav",
       "goals": 3,
-      "team": "Argentina",
+      "team": "Germany",
       "photo": null
     },
     {
@@ -1195,19 +1207,7 @@
       "goals": 2,
       "team": "Germany",
       "photo": null
-    },
-    {
-      "name": "Daichi Kamada",
-      "goals": 2,
-      "team": "Japan",
-      "photo": null
-    },
-    {
-      "name": "Yasin Ayari",
-      "goals": 2,
-      "team": "Sweden",
-      "photo": null
     }
   ],
-  "lastUpdated": "Mon, 22 Jun 2026 16:26:38 GMT"
+  "lastUpdated": "Tue, 23 Jun 2026 02:08:38 GMT"
 }
