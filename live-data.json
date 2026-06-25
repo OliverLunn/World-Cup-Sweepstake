@@ -389,39 +389,39 @@
       "utcDate": "2026-06-24T19:00:00Z",
       "time": "20:00",
       "match": "Switzerland vs Canada",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "2 - 1",
+      "status": "Finished"
     },
     {
       "date": "Jun 24",
       "utcDate": "2026-06-24T19:00:00Z",
       "time": "20:00",
       "match": "Bosnia-Herzegovina vs Qatar",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "3 - 1",
+      "status": "Finished"
     },
     {
       "date": "Jun 24",
       "utcDate": "2026-06-24T22:00:00Z",
       "time": "23:00",
       "match": "Morocco vs Haiti",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "4 - 2",
+      "status": "Finished"
     },
     {
       "date": "Jun 24",
       "utcDate": "2026-06-24T22:00:00Z",
       "time": "23:00",
       "match": "Scotland vs Brazil",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "0 - 3",
+      "status": "Finished"
     },
     {
       "date": "Jun 25",
       "utcDate": "2026-06-25T01:00:00Z",
       "time": "02:00",
       "match": "Czechia vs Mexico",
-      "score": "TBD",
+      "score": "0 - 0",
       "status": "Scheduled"
     },
     {
@@ -429,7 +429,7 @@
       "utcDate": "2026-06-25T01:00:00Z",
       "time": "02:00",
       "match": "South Africa vs South Korea",
-      "score": "TBD",
+      "score": "0 - 0",
       "status": "Scheduled"
     },
     {
@@ -596,7 +596,7 @@
       "date": "Jun 29",
       "utcDate": "2026-06-29T20:30:00Z",
       "time": "21:30",
-      "match": "null vs null",
+      "match": "Germany vs null",
       "score": "TBD",
       "status": "Scheduled"
     },
@@ -628,7 +628,7 @@
       "date": "Jul 1",
       "utcDate": "2026-07-01T01:00:00Z",
       "time": "02:00",
-      "match": "null vs null",
+      "match": "Mexico vs null",
       "score": "TBD",
       "status": "Scheduled"
     },
@@ -652,7 +652,7 @@
       "date": "Jul 2",
       "utcDate": "2026-07-02T00:00:00Z",
       "time": "01:00",
-      "match": "null vs null",
+      "match": "United States vs null",
       "score": "TBD",
       "status": "Scheduled"
     },
@@ -692,7 +692,7 @@
       "date": "Jul 3",
       "utcDate": "2026-07-03T22:00:00Z",
       "time": "23:00",
-      "match": "null vs null",
+      "match": "Argentina vs null",
       "score": "TBD",
       "status": "Scheduled"
     },
@@ -837,78 +837,78 @@
     "Group A": [
       {
         "team": "Mexico",
-        "pld": 2,
+        "pld": 3,
         "gd": 3,
-        "pts": 6
+        "pts": 7
       },
       {
         "team": "South Korea",
-        "pld": 2,
+        "pld": 3,
         "gd": 0,
-        "pts": 3
+        "pts": 4
       },
       {
         "team": "Czechia",
-        "pld": 2,
+        "pld": 3,
         "gd": -1,
-        "pts": 1
+        "pts": 2
       },
       {
         "team": "South Africa",
-        "pld": 2,
+        "pld": 3,
         "gd": -2,
-        "pts": 1
+        "pts": 2
       }
     ],
     "Group B": [
       {
-        "team": "Canada",
-        "pld": 2,
-        "gd": 6,
-        "pts": 4
+        "team": "Switzerland",
+        "pld": 3,
+        "gd": 4,
+        "pts": 7
       },
       {
-        "team": "Switzerland",
-        "pld": 2,
-        "gd": 3,
+        "team": "Canada",
+        "pld": 3,
+        "gd": 5,
         "pts": 4
       },
       {
         "team": "Bosnia-Herzegovina",
-        "pld": 2,
-        "gd": -3,
-        "pts": 1
+        "pld": 3,
+        "gd": -1,
+        "pts": 4
       },
       {
         "team": "Qatar",
-        "pld": 2,
-        "gd": -6,
+        "pld": 3,
+        "gd": -8,
         "pts": 1
       }
     ],
     "Group C": [
       {
         "team": "Brazil",
-        "pld": 2,
-        "gd": 3,
-        "pts": 4
+        "pld": 3,
+        "gd": 6,
+        "pts": 7
       },
       {
         "team": "Morocco",
-        "pld": 2,
-        "gd": 1,
-        "pts": 4
+        "pld": 3,
+        "gd": 3,
+        "pts": 7
       },
       {
         "team": "Scotland",
-        "pld": 2,
-        "gd": 0,
+        "pld": 3,
+        "gd": -3,
         "pts": 3
       },
       {
         "team": "Haiti",
-        "pld": 2,
-        "gd": -4,
+        "pld": 3,
+        "gd": -6,
         "pts": 0
       }
     ],
@@ -1155,6 +1155,12 @@
       "photo": null
     },
     {
+      "name": "Vinicius Junior",
+      "goals": 4,
+      "team": "Brazil",
+      "photo": null
+    },
+    {
       "name": "Kylian Mbappé",
       "goals": 4,
       "team": "France",
@@ -1167,9 +1173,21 @@
       "photo": null
     },
     {
+      "name": "Ismael Saibari",
+      "goals": 3,
+      "team": "Morocco",
+      "photo": null
+    },
+    {
       "name": "Deniz Undav",
       "goals": 3,
       "team": "Germany",
+      "photo": null
+    },
+    {
+      "name": "Johan Manzambi",
+      "goals": 3,
+      "team": "Switzerland",
       "photo": null
     },
     {
@@ -1179,35 +1197,17 @@
       "photo": null
     },
     {
-      "name": "Cyle Larin",
-      "goals": 2,
-      "team": "Canada",
-      "photo": null
-    },
-    {
-      "name": "Folarin Balogun",
-      "goals": 2,
-      "team": "United States",
-      "photo": null
-    },
-    {
-      "name": "Ismael Saibari",
-      "goals": 2,
-      "team": "Morocco",
-      "photo": null
-    },
-    {
-      "name": "Vinicius Junior",
-      "goals": 2,
+      "name": "Matheus Cunha",
+      "goals": 3,
       "team": "Brazil",
       "photo": null
     },
     {
-      "name": "Kai Havertz",
+      "name": "Cyle Larin",
       "goals": 2,
-      "team": "Germany",
+      "team": "Canada",
       "photo": null
     }
   ],
-  "lastUpdated": "Wed, 24 Jun 2026 14:04:36 GMT"
+  "lastUpdated": "Thu, 25 Jun 2026 02:10:09 GMT"
 }
