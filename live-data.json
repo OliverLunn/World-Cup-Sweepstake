@@ -469,8 +469,8 @@
       "utcDate": "2026-06-26T02:00:00Z",
       "time": "03:00",
       "match": "Turkey vs United States",
-      "score": "0 - 1",
-      "status": "Live"
+      "score": "3 - 2",
+      "status": "Finished"
     },
     {
       "date": "Jun 26",
@@ -478,7 +478,7 @@
       "time": "03:00",
       "match": "Paraguay vs Australia",
       "score": "0 - 0",
-      "status": "Live"
+      "status": "Finished"
     },
     {
       "date": "Jun 26",
@@ -580,7 +580,7 @@
       "date": "Jun 28",
       "utcDate": "2026-06-28T19:00:00Z",
       "time": "20:00",
-      "match": "null vs null",
+      "match": "South Africa vs Canada",
       "score": "TBD",
       "status": "Scheduled"
     },
@@ -588,7 +588,7 @@
       "date": "Jun 29",
       "utcDate": "2026-06-29T17:00:00Z",
       "time": "18:00",
-      "match": "null vs null",
+      "match": "Brazil vs Japan",
       "score": "TBD",
       "status": "Scheduled"
     },
@@ -604,7 +604,7 @@
       "date": "Jun 30",
       "utcDate": "2026-06-30T01:00:00Z",
       "time": "02:00",
-      "match": "null vs null",
+      "match": "Netherlands vs Morocco",
       "score": "TBD",
       "status": "Scheduled"
     },
@@ -652,7 +652,7 @@
       "date": "Jul 2",
       "utcDate": "2026-07-02T00:00:00Z",
       "time": "01:00",
-      "match": "United States vs null",
+      "match": "United States vs Bosnia-Herzegovina",
       "score": "TBD",
       "status": "Scheduled"
     },
@@ -676,7 +676,7 @@
       "date": "Jul 3",
       "utcDate": "2026-07-03T03:00:00Z",
       "time": "04:00",
-      "match": "null vs null",
+      "match": "Switzerland vs null",
       "score": "TBD",
       "status": "Scheduled"
     },
@@ -684,7 +684,7 @@
       "date": "Jul 3",
       "utcDate": "2026-07-03T18:00:00Z",
       "time": "19:00",
-      "match": "null vs null",
+      "match": "Australia vs null",
       "score": "TBD",
       "status": "Scheduled"
     },
@@ -916,8 +916,8 @@
       {
         "team": "United States",
         "pld": 3,
-        "gd": 5,
-        "pts": 7
+        "gd": 4,
+        "pts": 6
       },
       {
         "team": "Australia",
@@ -934,8 +934,8 @@
       {
         "team": "Turkey",
         "pld": 3,
-        "gd": -3,
-        "pts": 1
+        "gd": -2,
+        "pts": 3
       }
     ],
     "Group E": [
@@ -1209,5 +1209,5 @@
       "photo": null
     }
   ],
-  "lastUpdated": "Fri, 26 Jun 2026 02:12:13 GMT"
+  "lastUpdated": "Fri, 26 Jun 2026 14:01:17 GMT"
 }
