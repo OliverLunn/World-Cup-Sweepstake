@@ -485,32 +485,32 @@
       "utcDate": "2026-06-26T19:00:00Z",
       "time": "20:00",
       "match": "Norway vs France",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "1 - 4",
+      "status": "Finished"
     },
     {
       "date": "Jun 26",
       "utcDate": "2026-06-26T19:00:00Z",
       "time": "20:00",
       "match": "Senegal vs Iraq",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "5 - 0",
+      "status": "Finished"
     },
     {
       "date": "Jun 27",
       "utcDate": "2026-06-27T00:00:00Z",
       "time": "01:00",
       "match": "Uruguay vs Spain",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "0 - 1",
+      "status": "Finished"
     },
     {
       "date": "Jun 27",
       "utcDate": "2026-06-27T00:00:00Z",
       "time": "01:00",
       "match": "Cape Verde Islands vs Saudi Arabia",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "0 - 0",
+      "status": "Finished"
     },
     {
       "date": "Jun 27",
@@ -1019,52 +1019,52 @@
     "Group H": [
       {
         "team": "Spain",
-        "pld": 2,
-        "gd": 4,
-        "pts": 4
-      },
-      {
-        "team": "Uruguay",
-        "pld": 2,
-        "gd": 0,
-        "pts": 2
+        "pld": 3,
+        "gd": 5,
+        "pts": 7
       },
       {
         "team": "Cape Verde Islands",
-        "pld": 2,
+        "pld": 3,
         "gd": 0,
+        "pts": 3
+      },
+      {
+        "team": "Uruguay",
+        "pld": 3,
+        "gd": -1,
         "pts": 2
       },
       {
         "team": "Saudi Arabia",
-        "pld": 2,
+        "pld": 3,
         "gd": -4,
-        "pts": 1
+        "pts": 2
       }
     ],
     "Group I": [
       {
         "team": "France",
-        "pld": 2,
-        "gd": 5,
-        "pts": 6
+        "pld": 3,
+        "gd": 8,
+        "pts": 9
       },
       {
         "team": "Norway",
-        "pld": 2,
-        "gd": 4,
+        "pld": 3,
+        "gd": 1,
         "pts": 6
       },
       {
         "team": "Senegal",
-        "pld": 2,
-        "gd": -3,
-        "pts": 0
+        "pld": 3,
+        "gd": 2,
+        "pts": 3
       },
       {
         "team": "Iraq",
-        "pld": 2,
-        "gd": -6,
+        "pld": 3,
+        "gd": -11,
         "pts": 0
       }
     ],
@@ -1173,6 +1173,12 @@
       "photo": null
     },
     {
+      "name": "Ousmane Dembélé",
+      "goals": 4,
+      "team": "France",
+      "photo": null
+    },
+    {
       "name": "Ismael Saibari",
       "goals": 3,
       "team": "Morocco",
@@ -1201,13 +1207,7 @@
       "goals": 3,
       "team": "Brazil",
       "photo": null
-    },
-    {
-      "name": "Brian Brobbey",
-      "goals": 3,
-      "team": "Netherlands",
-      "photo": null
     }
   ],
-  "lastUpdated": "Fri, 26 Jun 2026 14:01:17 GMT"
+  "lastUpdated": "Sat, 27 Jun 2026 02:07:09 GMT"
 }
