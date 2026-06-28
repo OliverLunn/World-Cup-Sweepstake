@@ -533,47 +533,47 @@
       "utcDate": "2026-06-27T21:00:00Z",
       "time": "22:00",
       "match": "Panama vs England",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "0 - 2",
+      "status": "Finished"
     },
     {
       "date": "Jun 27",
       "utcDate": "2026-06-27T21:00:00Z",
       "time": "22:00",
       "match": "Croatia vs Ghana",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "2 - 1",
+      "status": "Finished"
     },
     {
       "date": "Jun 27",
       "utcDate": "2026-06-27T23:30:00Z",
       "time": "00:30",
       "match": "Colombia vs Portugal",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "0 - 0",
+      "status": "Finished"
     },
     {
       "date": "Jun 27",
       "utcDate": "2026-06-27T23:30:00Z",
       "time": "00:30",
       "match": "Congo DR vs Uzbekistan",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "3 - 1",
+      "status": "Finished"
     },
     {
       "date": "Jun 28",
       "utcDate": "2026-06-28T02:00:00Z",
       "time": "03:00",
       "match": "Jordan vs Argentina",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "0 - 1",
+      "status": "Live"
     },
     {
       "date": "Jun 28",
       "utcDate": "2026-06-28T02:00:00Z",
       "time": "03:00",
       "match": "Algeria vs Austria",
-      "score": "TBD",
+      "score": "0 - 0",
       "status": "Scheduled"
     },
     {
@@ -1071,78 +1071,78 @@
     "Group J": [
       {
         "team": "Argentina",
-        "pld": 2,
+        "pld": 3,
         "gd": 5,
-        "pts": 6
+        "pts": 7
       },
       {
         "team": "Austria",
-        "pld": 2,
+        "pld": 3,
         "gd": 0,
-        "pts": 3
+        "pts": 4
       },
       {
         "team": "Algeria",
-        "pld": 2,
+        "pld": 3,
         "gd": -2,
-        "pts": 3
+        "pts": 4
       },
       {
         "team": "Jordan",
-        "pld": 2,
+        "pld": 3,
         "gd": -3,
-        "pts": 0
+        "pts": 1
       }
     ],
     "Group K": [
       {
         "team": "Colombia",
-        "pld": 2,
+        "pld": 3,
         "gd": 3,
-        "pts": 6
+        "pts": 7
       },
       {
         "team": "Portugal",
-        "pld": 2,
+        "pld": 3,
         "gd": 5,
-        "pts": 4
+        "pts": 5
       },
       {
         "team": "Congo DR",
-        "pld": 2,
-        "gd": -1,
-        "pts": 1
+        "pld": 3,
+        "gd": 1,
+        "pts": 4
       },
       {
         "team": "Uzbekistan",
-        "pld": 2,
-        "gd": -7,
+        "pld": 3,
+        "gd": -9,
         "pts": 0
       }
     ],
     "Group L": [
       {
         "team": "England",
-        "pld": 2,
-        "gd": 2,
-        "pts": 4
-      },
-      {
-        "team": "Ghana",
-        "pld": 2,
-        "gd": 1,
-        "pts": 4
+        "pld": 3,
+        "gd": 4,
+        "pts": 7
       },
       {
         "team": "Croatia",
-        "pld": 2,
-        "gd": -1,
-        "pts": 3
+        "pld": 3,
+        "gd": 0,
+        "pts": 6
+      },
+      {
+        "team": "Ghana",
+        "pld": 3,
+        "gd": 0,
+        "pts": 4
       },
       {
         "team": "Panama",
-        "pld": 2,
-        "gd": -2,
+        "pld": 3,
+        "gd": -4,
         "pts": 0
       }
     ]
@@ -1197,17 +1197,17 @@
       "photo": null
     },
     {
-      "name": "Johan Manzambi",
+      "name": "Yoane Wissa",
       "goals": 3,
-      "team": "Switzerland",
+      "team": "Congo DR",
       "photo": null
     },
     {
-      "name": "Jonathan David",
+      "name": "Harry Kane",
       "goals": 3,
-      "team": "Canada",
+      "team": "England",
       "photo": null
     }
   ],
-  "lastUpdated": "Sat, 27 Jun 2026 13:07:32 GMT"
+  "lastUpdated": "Sun, 28 Jun 2026 02:28:53 GMT"
 }
