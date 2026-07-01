@@ -613,23 +613,23 @@
       "utcDate": "2026-06-30T17:00:00Z",
       "time": "18:00",
       "match": "Ivory Coast vs Norway",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "1 - 2",
+      "status": "Finished"
     },
     {
       "date": "Jun 30",
       "utcDate": "2026-06-30T21:00:00Z",
       "time": "22:00",
       "match": "France vs Sweden",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "3 - 0",
+      "status": "Finished"
     },
     {
       "date": "Jul 1",
       "utcDate": "2026-07-01T01:00:00Z",
       "time": "02:00",
       "match": "Mexico vs Ecuador",
-      "score": "TBD",
+      "score": "1 - 0",
       "status": "Scheduled"
     },
     {
@@ -1149,9 +1149,21 @@
   },
   "scorersData": [
     {
+      "name": "Kylian Mbappé",
+      "goals": 6,
+      "team": "France",
+      "photo": null
+    },
+    {
       "name": "Lionel Messi",
       "goals": 6,
       "team": "Argentina",
+      "photo": null
+    },
+    {
+      "name": "Erling Haaland",
+      "goals": 5,
+      "team": "Norway",
       "photo": null
     },
     {
@@ -1161,21 +1173,15 @@
       "photo": null
     },
     {
-      "name": "Kylian Mbappé",
-      "goals": 4,
-      "team": "France",
-      "photo": null
-    },
-    {
-      "name": "Erling Haaland",
-      "goals": 4,
-      "team": "Norway",
-      "photo": null
-    },
-    {
       "name": "Ousmane Dembélé",
       "goals": 4,
       "team": "France",
+      "photo": null
+    },
+    {
+      "name": "Julián Quiñones",
+      "goals": 3,
+      "team": "Mexico",
       "photo": null
     },
     {
@@ -1201,13 +1207,7 @@
       "goals": 3,
       "team": "New Zealand",
       "photo": null
-    },
-    {
-      "name": "Yoane Wissa",
-      "goals": 3,
-      "team": "Congo DR",
-      "photo": null
     }
   ],
-  "lastUpdated": "Tue, 30 Jun 2026 13:53:24 GMT"
+  "lastUpdated": "Wed, 01 Jul 2026 02:29:39 GMT"
 }
