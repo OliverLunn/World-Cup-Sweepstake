@@ -709,16 +709,16 @@
       "utcDate": "2026-07-04T17:00:00Z",
       "time": "18:00",
       "match": "Canada vs Morocco",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "0 - 3",
+      "status": "Finished"
     },
     {
       "date": "Jul 4",
       "utcDate": "2026-07-04T21:00:00Z",
       "time": "22:00",
       "match": "Paraguay vs France",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "0 - 1",
+      "status": "Finished"
     },
     {
       "date": "Jul 5",
@@ -1149,15 +1149,15 @@
   },
   "scorersData": [
     {
-      "name": "Lionel Messi",
+      "name": "Kylian Mbappé",
       "goals": 7,
-      "team": "Argentina",
+      "team": "France",
       "photo": null
     },
     {
-      "name": "Kylian Mbappé",
-      "goals": 6,
-      "team": "France",
+      "name": "Lionel Messi",
+      "goals": 7,
+      "team": "Argentina",
       "photo": null
     },
     {
@@ -1209,5 +1209,5 @@
       "photo": null
     }
   ],
-  "lastUpdated": "Sat, 04 Jul 2026 12:58:03 GMT"
+  "lastUpdated": "Sun, 05 Jul 2026 01:59:39 GMT"
 }
