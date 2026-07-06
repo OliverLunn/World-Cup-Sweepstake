@@ -725,15 +725,15 @@
       "utcDate": "2026-07-05T20:00:00Z",
       "time": "21:00",
       "match": "Brazil vs Norway",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "1 - 2",
+      "status": "Finished"
     },
     {
       "date": "Jul 6",
-      "utcDate": "2026-07-06T00:00:00Z",
-      "time": "01:00",
+      "utcDate": "2026-07-06T01:00:00Z",
+      "time": "02:00",
       "match": "Mexico vs England",
-      "score": "TBD",
+      "score": "1 - 2",
       "status": "Scheduled"
     },
     {
@@ -1155,15 +1155,15 @@
       "photo": null
     },
     {
-      "name": "Lionel Messi",
+      "name": "Erling Haaland",
       "goals": 7,
-      "team": "Argentina",
+      "team": "Norway",
       "photo": null
     },
     {
-      "name": "Erling Haaland",
-      "goals": 5,
-      "team": "Norway",
+      "name": "Lionel Messi",
+      "goals": 7,
+      "team": "Argentina",
       "photo": null
     },
     {
@@ -1173,9 +1173,21 @@
       "photo": null
     },
     {
+      "name": "Julián Quiñones",
+      "goals": 4,
+      "team": "Mexico",
+      "photo": null
+    },
+    {
       "name": "Vinicius Junior",
       "goals": 4,
       "team": "Brazil",
+      "photo": null
+    },
+    {
+      "name": "Jude Bellingham",
+      "goals": 4,
+      "team": "England",
       "photo": null
     },
     {
@@ -1195,19 +1207,7 @@
       "goals": 4,
       "team": "Senegal",
       "photo": null
-    },
-    {
-      "name": "Julián Quiñones",
-      "goals": 3,
-      "team": "Mexico",
-      "photo": null
-    },
-    {
-      "name": "Folarin Balogun",
-      "goals": 3,
-      "team": "United States",
-      "photo": null
     }
   ],
-  "lastUpdated": "Sun, 05 Jul 2026 13:05:32 GMT"
+  "lastUpdated": "Mon, 06 Jul 2026 02:05:47 GMT"
 }
