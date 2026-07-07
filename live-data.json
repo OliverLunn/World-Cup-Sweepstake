@@ -741,16 +741,16 @@
       "utcDate": "2026-07-06T19:00:00Z",
       "time": "20:00",
       "match": "Portugal vs Spain",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "0 - 1",
+      "status": "Finished"
     },
     {
       "date": "Jul 7",
       "utcDate": "2026-07-07T00:00:00Z",
       "time": "01:00",
       "match": "United States vs Belgium",
-      "score": "TBD",
-      "status": "Scheduled"
+      "score": "1 - 3",
+      "status": "Live"
     },
     {
       "date": "Jul 7",
@@ -1209,5 +1209,5 @@
       "photo": null
     }
   ],
-  "lastUpdated": "Mon, 06 Jul 2026 14:56:21 GMT"
+  "lastUpdated": "Tue, 07 Jul 2026 02:01:10 GMT"
 }
